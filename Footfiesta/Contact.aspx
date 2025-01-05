@@ -91,7 +91,7 @@
                                 <div class="w-100"></div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input type="submit" value="Send Message" class="btn btn-primary">
+                                        &nbsp;<asp:Button ID="Button1" runat="server" Text="Send Message" class="btn btn-primary" />
                                     </div>
                                 </div>
                             </div>

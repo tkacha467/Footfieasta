@@ -49,12 +49,12 @@
                                 <div id="colorlib-logo"><a href="Home.aspx">FootFiesta</a></div>
                             </div>
                             <div class="col-sm-5 col-md-3">
-                                <form action="#" class="search-wrap">
+                                <div action="#" class="search-wrap">
                                     <div class="form-group">
                                         <input type="search" class="form-control search" placeholder="Search">
                                         <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -74,7 +74,10 @@
                                     <li><a href="Women.aspx">Women</a></li>
                                     <li><a href="About.aspx">About</a></li>
                                     <li><a href="Contact.aspx">Contact</a></li>
-                                    <li class="cart"><a href="Cart.aspx"><i class="icon-shopping-cart"></i>Cart [0]</a></li>
+
+                                  <%--  <li class="cart"><a href="Cart.aspx"><i class="icon-shopping-cart"></i>Cart [0]</a></li>--%>
+                                     <li class="cart"><a href="Cart.aspx"><i class="active"></i>Register</a></li>
+                                     <li class="cart"><a href="Cart.aspx"><i class="active"></i>Login</a></li>
                                 </ul>
                             </div>
                         </div>

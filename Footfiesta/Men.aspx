@@ -2,16 +2,18 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="Home.aspx">Home</a></span> / <span>Men</span></p>
+                    <p class="bread"><span><a href="index.html">Home</a></span> / <span>Men</span></p>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="breadcrumbs-two">
         <div class="container">
             <div class="row">
@@ -290,5 +292,7 @@
             </div>
         </div>
     </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
 
