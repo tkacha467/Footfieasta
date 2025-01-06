@@ -74,10 +74,12 @@
                                     <li><a href="Women.aspx">Women</a></li>
                                     <li><a href="About.aspx">About</a></li>
                                     <li><a href="Contact.aspx">Contact</a></li>
+                                    <li><a href="Login.aspx">Login</a></li>
+                                     <li><a href="Register.aspx">Register</a></li>
 
-                                  <%--  <li class="cart"><a href="Cart.aspx"><i class="icon-shopping-cart"></i>Cart [0]</a></li>--%>
-                                     <li class="cart"><a href="Cart.aspx"><i class="active"></i>Register</a></li>
-                                     <li class="cart"><a href="Cart.aspx"><i class="active"></i>Login</a></li>
+                                    <li class="cart"><a href="Cart.aspx"><i class="icon-shopping-cart"></i>Cart [0]</a></li>
+                                     
+                                    
                                 </ul>
                             </div>
                         </div>

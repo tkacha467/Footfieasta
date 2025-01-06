@@ -1,14 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Footfiesta.Contact" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Footfiesta.Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-
-<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="index.html">Home</a></span> / <span>Contact</span></p>
+                    <p class="bread"><span><a href="Home.aspx">Home</a></span> / <span>Register</span></p>
                 </div>
             </div>
         </div>
@@ -18,33 +17,10 @@
     <div id="colorlib-contact">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <h3>Contact Information</h3>
-                    <div class="row contact-info-wrap">
-                        <div class="col-md-3">
-                            <p>
-                                <span><i class="icon-location"></i></span>198 West 21th Street,
-                                <br>
-                                Suite 721 New York NY 10016
-                            </p>
-                        </div>
-                        <div class="col-md-3">
-                            <p><span><i class="icon-phone3"></i></span><a href="tel://1234567920">+ 1235 2355 98</a></p>
-                        </div>
-                        <div class="col-md-3">
-                            <p><span><i class="icon-paperplane"></i></span><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                        </div>
-                        <div class="col-md-3">
-                            <p><span><i class="icon-globe"></i></span><a href="#">yoursite.com</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     <div class="contact-wrap">
-                        <h3>Get In Touch</h3>
-                        <form action="#" class="contact-form">
+                       <%--<h3>Get In Touch</h3>--%>
+                        <div action="#" class="contact-form">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -72,18 +48,18 @@
                                 <div class="w-100"></div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="subject">Subject</label>
+                                        <label for="subject">Phone No</label>
                                         <br />
-                                        <asp:TextBox ID="subject" class="form-control" placeholder="Enter your Subject " runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="subject" class="form-control" placeholder="Enter your Phone Number " runat="server"></asp:TextBox>
                                         &nbsp;
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="message">Message</label>
+                                        <label for="message">Enter Password</label>
                                         <br />
-                                        <asp:TextBox ID="message" class="form-control" runat="server" placeholder="Message !" Height="95px"></asp:TextBox>
+                                        <asp:TextBox ID="message" class="form-control" runat="server" placeholder="Enter Password" Height="95px"></asp:TextBox>
                                         <br />
 
                                     </div>
@@ -95,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -104,11 +80,5 @@
             </div>
         </div>
     </div>
-
 </asp:Content>
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
-</asp:Content>
-
-
-
 

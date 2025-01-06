@@ -150,6 +150,7 @@
     <Content Include="Men.aspx" />
     <Content Include="Order_Complete.aspx" />
     <Content Include="Product_Details.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Shopping_Cart.aspx" />
     <Content Include="Web.config" />
     <Content Include="Wishlist.aspx" />
@@ -220,6 +221,13 @@
       <DependentUpon>Product_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Shopping_Cart.aspx.cs">
       <DependentUpon>Shopping_Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
