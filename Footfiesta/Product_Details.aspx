@@ -109,7 +109,7 @@
                                         Style="background-color: #B0B0B0; color: white; border: none; width: 40px; height: 40px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; text-decoration: none;">-</asp:LinkButton>
 
                                     <asp:TextBox ID="TextBox1" runat="server" Text="1" ReadOnly="true"
-                                        Style="text-align: center; font-size: 18px; width: 80px; height: 40px; border-radius: 5px; border: 1px solid #ccc;"></asp:TextBox>
+                                        Style="text-align: center; font-size: 18px; width: 80px; height: 41px; border-radius: 5px; border: 1px solid #ccc;"></asp:TextBox>
 
                                     <asp:LinkButton ID="LinkButton2" runat="server" OnClientClick="incrementQuantity(); return false;"
                                         Style="background-color: #B0B0B0; color: white; border: none; width: 40px; height: 40px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; text-decoration: none;">+</asp:LinkButton>
