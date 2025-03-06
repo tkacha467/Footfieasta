@@ -50,9 +50,14 @@
                             </div>
                             <div class="col-sm-5 col-md-3">
                                 <div action="#" class="search-wrap">
-                                    <div class="form-group">
-                                        <input type="search" class="form-control search" placeholder="Search">
-                                        <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+                                    <div style="display: flex; align-items: center; background-color: #fff; border-radius: 25px; overflow: hidden; border: 2px solid #ccc; width: 300px; padding: 5px;">
+
+                                        <asp:TextBox ID="TextBox1" runat="server" placeholder="Search"
+                                            Style="border: none; padding: 10px 15px; font-size: 16px; outline: none; width: 250px; border-radius: 30px; background: #fff;" />
+                                        <asp:Button ID="Button1" runat="server" Text="🔍"
+                                            Style="width: 50px; height: 50px; border-radius: 50%; background-color: #87c0b7; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;" />
+
+
                                     </div>
                                 </div>
                             </div>
@@ -75,11 +80,11 @@
                                     <li><a href="About.aspx">About</a></li>
                                     <li><a href="Contact.aspx">Contact</a></li>
                                     <li><a href="Login.aspx">Login</a></li>
-                                     <li><a href="Register.aspx">Register</a></li>
+                                    <li><a href="Register.aspx">Register</a></li>
 
                                     <li class="cart"><a href="Cart.aspx"><i class="icon-shopping-cart"></i>Cart [0]</a></li>
-                                     
-                                    
+
+
                                 </ul>
                             </div>
                         </div>
@@ -392,7 +397,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p><a href="#" class="btn btn-primary btn-lg">Shop All Products</a></p>
+                                <p>
+                                    <%--<a href="#" class="btn btn-primary btn-lg">Shop All Products</a>--%>
+                                    <asp:Button ID="Button2" runat="server" class="btn btn-primary btn-lg" Text="Shop All Products" />
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -448,10 +456,11 @@
                             <h4>Customer Care</h4>
                             <p>
                                 <ul class="colorlib-footer-links">
-                                    <li><a href="#">Contact</a></li>
+
+                                    <li><a href="Contact.aspx">Contact</a></li>
                                     <li><a href="#">Returns/Exchange</a></li>
                                     <li><a href="#">Gift Voucher</a></li>
-                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="Wishlist.aspx">Wishlist</a></li>
                                     <li><a href="#">Special</a></li>
                                     <li><a href="#">Customer Services</a></li>
                                     <li><a href="#">Site maps</a></li>
@@ -462,11 +471,20 @@
                             <h4>Information</h4>
                             <p>
                                 <ul class="colorlib-footer-links">
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Delivery Information</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Support</a></li>
-                                    <li><a href="#">Order Tracking</a></li>
+                                    <li><a href="About.aspx">About us</a>
+                                    </li>
+                                    <li>
+                                        <a href="Order_Complete.aspx">Delivery Information</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Privacy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Support</a>
+                                    </li>
+                                    <li>
+                                        <a href="Order_Complete.aspx">Order Tracking</a>
+                                    </li>
                                 </ul>
                             </p>
                         </div>
