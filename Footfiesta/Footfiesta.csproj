@@ -149,6 +149,7 @@
     <Content Include="js\respond.min.js" />
     <Content Include="Men.aspx" />
     <Content Include="Order_Complete.aspx" />
+    <Content Include="Product.aspx" />
     <Content Include="Product_Details.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Shopping_Cart.aspx" />
@@ -213,6 +214,13 @@
     <Compile Include="Order_Complete.aspx.designer.cs">
       <DependentUpon>Order_Complete.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Product.aspx.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Product.aspx.designer.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Product_Details.aspx.cs">
       <DependentUpon>Product_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,6 +242,13 @@
     </Compile>
     <Compile Include="Shopping_Cart.aspx.designer.cs">
       <DependentUpon>Shopping_Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="Wishlist.aspx.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
@@ -1277,6 +1292,7 @@
     <Content Include="sass\bootstrap\_utilities.scss" />
     <Content Include="sass\bootstrap\_variables.scss" />
     <Content Include="sass\style.scss" />
+    <Content Include="Site1.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

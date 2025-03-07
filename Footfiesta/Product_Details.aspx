@@ -94,9 +94,7 @@
                                 </div>
 
                                 <!-- Add to Cart Button -->
-                                <asp:Button ID="btnAddToCart" runat="server" Text="🛒 Add to Cart"
-                                    OnClick="btnAddToCart_Click"
-                                    Style="background-color: #444; color: white; padding: 10px 15px; border: none; cursor: pointer; font-size: 16px; display: flex; align-items: center; text-decoration: none;" />
+
 
                             </div>
 
