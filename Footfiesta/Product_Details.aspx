@@ -64,80 +64,79 @@
                             </span>
                         </p>
                         <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                        <div class="size-wrap">
-                            <div class="block-26 mb-2">
-                                <h4>Size</h4>
-                                <ul>
-                                    <li><a href="#">7</a></li>
-                                    <li><a href="#">7.5</a></li>
-                                    <li><a href="#">8</a></li>
-                                    <li><a href="#">8.5</a></li>
-                                    <li><a href="#">9</a></li>
-                                    <li><a href="#">9.5</a></li>
-                                    <li><a href="#">10</a></li>
-                                    <li><a href="#">10.5</a></li>
-                                    <li><a href="#">11</a></li>
-                                    <li><a href="#">11.5</a></li>
-                                    <li><a href="#">12</a></li>
-                                    <li><a href="#">12.5</a></li>
-                                    <li><a href="#">13</a></li>
-                                    <li><a href="#">13.5</a></li>
-                                    <li><a href="#">14</a></li>
-                                </ul>
-                            </div>
-                            <div class="block-26 mb-4">
-                                <h4>Width</h4>
-                                <ul>
-                                    <li><a href="#">M</a></li>
-                                    <li><a href="#">W</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="input-group mb-4">
-                            <span class="input-group-btn">
-                                <%--<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                           <i class="icon-minus2"></i>
-                        	</button>
-                    		</span>
-                     	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-                     	<span class="input-group-btn ml-1">
-                        	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                             <i class="icon-plus2"></i>
-                         </button>--%>
-                                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                    <asp:LinkButton ID="LinkButton1" runat="server" OnClientClick="decrementQuantity(); return false;"
+                        <div class="container mt-4">
+                            <h4>SIZE</h4>
+
+                            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+
+                                <!-- Size Options -->
+                                <div id="sizeOptions" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                    <asp:Repeater ID="rptSizes" runat="server">
+                                        <ItemTemplate>
+                                            <div onclick="selectSize(this)" data-size='<%# Eval("SizeValue") %>'
+                                                style="padding: 10px 15px; border: 1px solid #ccc; background-color: #ddd; cursor: pointer; text-align: center; width: 50px; font-size: 16px; transition: 0.3s;">
+                                                <%# Eval("SizeValue") %>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+
+                                <!-- Quantity Selector -->
+                                <div style="display: flex; align-items: center; gap: 5px;">
+                                    <asp:LinkButton ID="btnDecrease" runat="server" OnClientClick="return changeQuantity(-1);"
                                         Style="background-color: #B0B0B0; color: white; border: none; width: 40px; height: 40px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; text-decoration: none;">-</asp:LinkButton>
 
-                                    <asp:TextBox ID="TextBox1" runat="server" Text="1" ReadOnly="true"
-                                        Style="text-align: center; font-size: 18px; width: 80px; height: 41px; border-radius: 5px; border: 1px solid #ccc;"></asp:TextBox>
+                                    <asp:TextBox ID="txtQuantity" runat="server" Text="1" ReadOnly="true"
+                                        Style="text-align: center; font-size: 18px; width: 50px; height: 40px; border-radius: 5px; border: 1px solid #ccc;"></asp:TextBox>
 
-                                    <asp:LinkButton ID="LinkButton2" runat="server" OnClientClick="incrementQuantity(); return false;"
+                                    <asp:LinkButton ID="btnIncrease" runat="server" OnClientClick="return changeQuantity(1);"
                                         Style="background-color: #B0B0B0; color: white; border: none; width: 40px; height: 40px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; text-decoration: none;">+</asp:LinkButton>
                                 </div>
 
-                                <script>
-                                    function incrementQuantity() {
-                                        var textbox = document.getElementById('<%= TextBox1.ClientID %>');
-                                        var quantity = parseInt(textbox.value, 10) || 1;
-                                        textbox.value = quantity + 1;
-                                    }
+                                <!-- Add to Cart Button -->
+                                <asp:Button ID="btnAddToCart" runat="server" Text="🛒 Add to Cart"
+                                    OnClick="btnAddToCart_Click"
+                                    Style="background-color: #444; color: white; padding: 10px 15px; border: none; cursor: pointer; font-size: 16px; display: flex; align-items: center; text-decoration: none;" />
 
-                                    function decrementQuantity() {
-                                        var textbox = document.getElementById('<%= TextBox1.ClientID %>');
-                                        var quantity = parseInt(textbox.value, 10) || 1;
-                                        if (quantity > 1) {  // Prevent going below 1
-                                            textbox.value = quantity - 1;
-                                        }
-                                    }
-                                </script>
-
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i>Add to Cart</a></p>
                             </div>
+
+                            <!-- HiddenField to store selected size -->
+                            <asp:HiddenField ID="selectedSize" runat="server" />
+
+                            <!-- Inline JavaScript -->
+                            <script type="text/javascript">
+                                function selectSize(element) {
+                                    // Reset styles for all size options
+                                    var sizeElements = document.querySelectorAll('#sizeOptions div');
+                                    for (var i = 0; i < sizeElements.length; i++) {
+                                        sizeElements[i].style.backgroundColor = "#ddd";
+                                        sizeElements[i].style.color = "black";
+                                    }
+
+                                    // Highlight selected size
+                                    element.style.backgroundColor = "#444";
+                                    element.style.color = "white";
+
+                                    // Store selected value in HiddenField
+                                    var hiddenField = document.getElementById('<%= selectedSize.ClientID %>');
+                                    if (hiddenField) {
+                                        hiddenField.value = element.getAttribute('data-size');
+                                    }
+                                }
+
+                                function changeQuantity(amount) {
+                                    var quantityInput = document.getElementById('<%= txtQuantity.ClientID %>');
+                                    var currentValue = parseInt(quantityInput.value, 10);
+
+                                    if (currentValue + amount > 0) {
+                                        quantityInput.value = currentValue + amount;
+                                    }
+                                    return false; // Prevent postback
+                                }
+                            </script>
+
                         </div>
+
                     </div>
                 </div>
             </div>
