@@ -35,6 +35,8 @@ namespace Footfiesta
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+           
             if (fileUploadImage.HasFile)
             {
                 try
@@ -44,12 +46,14 @@ namespace Footfiesta
                     {
                         if (fileUploadImage.PostedFile.ContentLength <= 1024000) // 1MB limit
                         {
-                            string fileName = Path.GetFileName(fileUploadImage.FileName);
-                            string filePath = Server.MapPath("~/Images/datalist/" + fileName);
-                            fileUploadImage.SaveAs(filePath);
+                            string imagename = "Images/datalist/" + fileUploadImage.FileName;
+                            //string fileName = Path.GetFileName(fileUploadImage.FileName);
+
+                            //string filePath = Server.MapPath(imagename);
+                            fileUploadImage.SaveAs(Server.MapPath(imagename));
 
                             // Insert into database
-                            ep.Insert(fileName, txtPrice.Text, txtProductName.Text);
+                            ep.Insert(imagename, txtPrice.Text, txtProductName.Text);
 
                             Response.Write("<script>alert('File uploaded and data inserted successfully!');</script>");
                             clear();

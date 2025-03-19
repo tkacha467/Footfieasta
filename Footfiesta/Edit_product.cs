@@ -13,10 +13,11 @@ namespace Footfiesta
         DataSet ds;
         private readonly string s = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
 
-        public void connection()
+        public SqlConnection connection()
         {
             con = new SqlConnection(s);
             con.Open();
+            return con;
         }
 
         public void Insert(string imageUrl, string price, string productName)
