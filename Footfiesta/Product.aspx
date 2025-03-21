@@ -4,7 +4,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <asp:DataList ID="DataList1" runat="server" BorderColor="#003300" OnSelectedIndexChanged="DataList1_SelectedIndexChanged" RepeatDirection="Horizontal">
         <ItemTemplate>
-            <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("ImageUrl") %>' />
+            <asp:Image ID="Image1" runat="server" height="200" Width="200" ImageUrl='<%# Eval("ImageUrl") %>' />
             <br />
             <asp:Label ID="Label1" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
             <br />
