@@ -50,5 +50,34 @@ namespace Footfiesta
             cmd = new SqlCommand($"INSERT INTO Products (Product_Name,Description,Price,Category_id,Image_url) VALUES ('{p_name}', '{desc}', '{price}','{c_id}', '{image}');", con);
             return cmd.ExecuteNonQuery();
         }
+
+        public DataSet SelectProduct(int p_id) {
+            connection();
+            da = new SqlDataAdapter($"Select Product_name,Description,Price,Category_id from Products where Product_id='{p_id}'",con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+        public DataSet SelectProduct()
+        {
+            da = new SqlDataAdapter($"Select * from Products", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+        public int updateProduct(int p_id,string p_name,string desc, decimal price, int c_id) {
+            connection();
+            cmd = new SqlCommand($"update Products set Product_name='{p_name}', Description='{desc}', Price='{price}', Category_id='{c_id}' where Product_id='{p_id}';",con);
+
+            return cmd.ExecuteNonQuery();
+        }
+        public void DeleteProduct(int p_id)
+        {
+            connection();
+            cmd = new SqlCommand($"Delete From Products where Product_Id='{p_id}';", con);
+            cmd.ExecuteNonQuery();
+        }
     }
 }
