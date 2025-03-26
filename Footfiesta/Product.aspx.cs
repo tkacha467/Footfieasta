@@ -6,51 +6,83 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 
 namespace Footfiesta
 {
     public partial class Product : System.Web.UI.Page
     {
-        SqlConnection con;
-        SqlCommand cmd;
         DataSet ds;
         SqlDataAdapter da;
         PagedDataSource pg;
-        Edit_product es;
-        int pid, row;
-
+        DBConnect db = new DBConnect();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            conection();
-            display();
+            if (!IsPostBack)
+            {
+                display();
+            }
         }
-        void conection()
+        public string FormatDescription(string description, string productId)
         {
-            es = new Edit_product();
-            es.connection();
-
+            int maxLength = 50;
+            if (!string.IsNullOrEmpty(description) && description.Length > maxLength)
+            {
+                string shortDesc = description.Substring(0, maxLength) + "... ";
+                string moreLink = $"<a href='javascript:void(0);' onclick='showFullDescription(\"desc_{productId}\")' style='color:#008080; text-decoration:none;'>more</a>";
+                return $"<span data-full='{description}'>{shortDesc}{moreLink}</span>";
+            }
+            return description;
         }
+
+
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            int currentPage = Convert.ToInt32(ViewState["id"]);
+            if (currentPage < pg.PageCount - 1)
+            {
+                ViewState["id"] = currentPage + 1;
+                display();
+            }
+        }
+
+        protected void btnPrev_Click(object sender, EventArgs e)
+        {
+            int currentPage = Convert.ToInt32(ViewState["id"]);
+            if (currentPage > 0)
+            {
+                ViewState["id"] = currentPage - 1;
+                display();
+            }
+        }
+
         void display()
         {
-           
-            da = new SqlDataAdapter("Select * from  Products", es.connection());
+            db.connection();
+            da = new SqlDataAdapter("SELECT * FROM Products", db.connection());
             ds = new DataSet();
             da.Fill(ds);
-            row = ds.Tables[0].Rows.Count;
+
             pg = new PagedDataSource();
-            pg.AllowPaging = true;
-            pg.PageSize = 4;
             pg.DataSource = ds.Tables[0].DefaultView;
+            pg.AllowPaging = true;
+            pg.PageSize = 5;
+
+            // Ensure ViewState["id"] is initialized
+            if (ViewState["id"] == null)
+            {
+                ViewState["id"] = 0;
+            }
+
+            pg.CurrentPageIndex = Convert.ToInt32(ViewState["id"]);
+
+            // Bind DataList1 to the paged data source
             DataList1.DataSource = pg;
             DataList1.DataBind();
-
-
         }
-        protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 }
