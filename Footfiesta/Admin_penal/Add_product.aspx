@@ -27,7 +27,7 @@
             <asp:TextBox ID="txtdesc" TextMode="MultiLine" runat="server" Placeholder="Enter Description"
                 Style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;"></asp:TextBox>
 
-            <asp:Label ID="Label2" runat="server" Text="Description:"
+            <asp:Label ID="Label2" runat="server" Text="Category:"
                 Style="display: block; font-weight: bold; margin-bottom: 5px;"></asp:Label>
             <asp:DropDownList ID="ddlcategory" runat="server" Style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;"></asp:DropDownList>
 
