@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin_login.aspx" />
-    <Content Include="Admin_penal\Category.aspx" />
+    <Content Include="Admin_panel\Category.aspx" />
     <Content Include="Admin_register.aspx" />
     <Content Include="App_Data\Footfiesta.mdf" />
     <Content Include="App_Data\Footfiesta_log.ldf">
@@ -157,17 +157,17 @@
     <Content Include="js\popper.min.js" />
     <Content Include="js\respond.min.js" />
     <Content Include="Login.aspx" />
-    <Content Include="Men.aspx" />
-    <Content Include="Order_Complete.aspx" />
+    <Content Include="User_panel\Men.aspx" />
+    <Content Include="User_panel\Order_Complete.aspx" />
     <Content Include="Product.aspx" />
-    <Content Include="Product_Details.aspx" />
-    <Content Include="Admin_penal\Add_product.aspx" />
+    <Content Include="User_panel\Product_Details.aspx" />
+    <Content Include="Admin_panel\Add_product.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="Shopping_Cart.aspx" />
+    <Content Include="User_panel\Shopping_Cart.aspx" />
     <Content Include="User_Login.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Wishlist.aspx" />
-    <Content Include="Women.aspx" />
+    <Content Include="User_panel\Wishlist.aspx" />
+    <Content Include="User_panel\Women.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -184,11 +184,11 @@
     <Compile Include="Admin_login.aspx.designer.cs">
       <DependentUpon>Admin_login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin_penal\Category.aspx.cs">
+    <Compile Include="Admin_panel\Category.aspx.cs">
       <DependentUpon>Category.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin_penal\Category.aspx.designer.cs">
+    <Compile Include="Admin_panel\Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin_register.aspx.cs">
@@ -241,18 +241,18 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Men.aspx.cs">
+    <Compile Include="User_panel\Men.aspx.cs">
       <DependentUpon>Men.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Men.aspx.designer.cs">
+    <Compile Include="User_panel\Men.aspx.designer.cs">
       <DependentUpon>Men.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order_Complete.aspx.cs">
+    <Compile Include="User_panel\Order_Complete.aspx.cs">
       <DependentUpon>Order_Complete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order_Complete.aspx.designer.cs">
+    <Compile Include="User_panel\Order_Complete.aspx.designer.cs">
       <DependentUpon>Order_Complete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Product.aspx.cs">
@@ -262,18 +262,18 @@
     <Compile Include="Product.aspx.designer.cs">
       <DependentUpon>Product.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Product_Details.aspx.cs">
+    <Compile Include="User_panel\Product_Details.aspx.cs">
       <DependentUpon>Product_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Product_Details.aspx.designer.cs">
+    <Compile Include="User_panel\Product_Details.aspx.designer.cs">
       <DependentUpon>Product_Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin_penal\Add_product.aspx.cs">
+    <Compile Include="Admin_panel\Add_product.aspx.cs">
       <DependentUpon>Add_product.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin_penal\Add_product.aspx.designer.cs">
+    <Compile Include="Admin_panel\Add_product.aspx.designer.cs">
       <DependentUpon>Add_product.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,11 +284,11 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Shopping_Cart.aspx.cs">
+    <Compile Include="User_panel\Shopping_Cart.aspx.cs">
       <DependentUpon>Shopping_Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Shopping_Cart.aspx.designer.cs">
+    <Compile Include="User_panel\Shopping_Cart.aspx.designer.cs">
       <DependentUpon>Shopping_Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="User_Login.aspx.cs">
@@ -298,18 +298,18 @@
     <Compile Include="User_Login.aspx.designer.cs">
       <DependentUpon>User_Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Wishlist.aspx.cs">
+    <Compile Include="User_panel\Wishlist.aspx.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Wishlist.aspx.designer.cs">
+    <Compile Include="User_panel\Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Women.aspx.cs">
+    <Compile Include="User_panel\Women.aspx.cs">
       <DependentUpon>Women.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Women.aspx.designer.cs">
+    <Compile Include="User_panel\Women.aspx.designer.cs">
       <DependentUpon>Women.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

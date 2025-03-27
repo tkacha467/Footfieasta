@@ -28,8 +28,9 @@ namespace Footfiesta
              
             if(i>0)
             {
-                Session["User"] = txtUsername.Text;
+                Session["User_Username"] = txtUsername.Text;
                 Response.Write("User Login Sucessfully....!");
+                Response.Redirect("Home.aspx");
             }
 
             

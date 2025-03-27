@@ -36,6 +36,13 @@
     <link rel="stylesheet" href="css/style.css">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            left: 0px;
+            top: 0px;
+            width: 903px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -54,7 +61,7 @@
                                     <div style="display: flex; align-items: center; background-color: #fff; border-radius: 25px; overflow: hidden; border: 2px solid #ccc; width: 300px; padding: 5px;">
 
                                         <asp:TextBox ID="TextBox1" runat="server" placeholder="Search"
-                                            Style="border: none; padding: 10px 15px; font-size: 16px; outline: none; width: 250px; border-radius: 30px; background: #fff;" />
+                                            Style="border: none; padding: 10px 15px; font-size: 16px; outline: none; width: 250px; border-radius: 30px; background: #fff;" BorderColor="White" />
                                         <asp:Button ID="Button1" runat="server" Text="🔍"
                                             Style="width: 50px; height: 50px; border-radius: 50%; background-color: #87c0b7; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;" />
 
@@ -67,25 +74,54 @@
                             <div class="col-sm-12 text-left menu-1">
                                 <ul>
                                     <li class="active"><a href="Home.aspx">Home</a></li>
-                                    <li class="has-dropdown">
-                                        <a href="Men.aspx">Men</a>
+                                     <li><a href="Product.aspx">Product</a></li>
+                                    <%if(Session["Admin_Username"] != null)
+                                        {%>
+                                            <li><a href="~Add_product.aspx">Add Product</a></li>
+                                            <li><a href="~Category.aspx">Add Category</a></li>
+                                   <% }%>
+
+
+                                    <% if (Session["User_Username"]?.ToString() != null)
+                                        { %>
+                                   <li class="has-dropdown">
+                                        <a href="~Men.aspx">Men</a>
                                         <ul class="dropdown">
-                                            <li><a href="Product_Details.aspx">Product Detail</a></li>
-                                            <li><a href="Shopping_Cart.aspx">Shopping Cart</a></li>
-                                            <li><a href="Checkout.aspx">Checkout</a></li>
-                                            <li><a href="Order_Complete.aspx">Order Complete</a></li>
-                                            <li><a href="Wishlist.aspx">Wishlist</a></li>
+                                            <li><a href="~Product_Details.aspx">Product Detail</a></li>
+                                            <li><a href="~Shopping_Cart.aspx">Shopping Cart</a></li>
+                                            <li><a href="~Checkout.aspx">Checkout</a></li>
+                                            <li><a href="~Order_Complete.aspx">Order Complete</a></li>
+                                            <li><a href="~Wishlist.aspx">Wishlist</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="Women.aspx">Women</a></li>
+                                    <%} %>
+                                    
                                     <li><a href="About.aspx">About</a></li>
                                     <li><a href="Contact.aspx">Contact</a></li>
-                                    <li><a href="Login.aspx">Login</a></li>
-                                    <li><a href="Register.aspx">Register</a></li>
+                                    <%-- <li><a href="Login.aspx">Login</a></li>
+                                    <li><a href="Register.aspx">Register</a></li>--%>
 
-                                    <li class="cart"><a href="Cart.aspx"><i class="icon-shopping-cart"></i>Cart [0]</a></li>
-
-
+                                    <% if ((Session["User_Username"]?.ToString() == null) && (Session["Admin_Username"]?.ToString() == null) )
+                                        { %>
+                                    <li class="nav-item">
+                                        <li><a href="Login.aspx">Login</a></li>
+                                    </li>
+                                    <li class="nav-item">
+                                        <li><a href="Register.aspx">Register</a></li>
+                                    </li>
+                                    <%}
+                                        else
+                                        { %>
+                                    <li class="nav-item">
+                                        <li class="cart"><a href="Cart.aspx"><i class="icon-shopping-cart"></i>Add To Cart</a></li>
+                                    </li>
+                                    <li class="nav-item">
+                                        <li>
+                                            <asp:LinkButton ID="LinkButton1" class="nav-link" runat="server" CssClass="auto-style1" OnClick="LinkButton1_Click">Logout</asp:LinkButton></li>
+                                        <%--<li><a class="nav-link"  href="Home.aspx">Logout</a></li>--%>
+                                    </li>
+                                    <%} %>
                                 </ul>
                             </div>
                         </div>
@@ -119,7 +155,8 @@
                     <div class="flexslider">
                         <ul class="slides">
                             <li style="background-image: url(images/img_bg_1.jpg);">
-                                <div class="overlay"></div>
+                                <div class="overlay">
+                                </div>
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-sm-6 offset-sm-3 text-center slider-text">
@@ -128,8 +165,12 @@
                                                     <h1 class="head-1">Men's</h1>
                                                     <h2 class="head-2">Shoes</h2>
                                                     <h2 class="head-3">Collection</h2>
-                                                    <p class="category"><span>New trending shoes</span></p>
-                                                    <p><a href="#" class="btn btn-primary">Shop Collection</a></p>
+                                                    <p class="category">
+                                                        <span>New trending shoes</span>
+                                                    </p>
+                                                    <p>
+                                                        <a href="Product.aspx" class="btn btn-primary">Shop Collection</a>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,7 +178,8 @@
                                 </div>
                             </li>
                             <li style="background-image: url(images/img_bg_2.jpg);">
-                                <div class="overlay"></div>
+                                <div class="overlay">
+                                </div>
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-sm-6 offset-sm-3 text-center slider-text">
@@ -146,8 +188,12 @@
                                                     <h1 class="head-1">Huge</h1>
                                                     <h2 class="head-2">Sale</h2>
                                                     <h2 class="head-3"><strong class="font-weight-bold">50%</strong> Off</h2>
-                                                    <p class="category"><span>Big sale sandals</span></p>
-                                                    <p><a href="#" class="btn btn-primary">Shop Collection</a></p>
+                                                    <p class="category">
+                                                        <span>Big sale sandals</span>
+                                                    </p>
+                                                    <p>
+                                                        <a href="Product.aspx" class="btn btn-primary">Shop Collection</a>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,7 +201,8 @@
                                 </div>
                             </li>
                             <li style="background-image: url(images/img_bg_3.jpg);">
-                                <div class="overlay"></div>
+                                <div class="overlay">
+                                </div>
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-sm-6 offset-sm-3 text-center slider-text">
@@ -164,8 +211,12 @@
                                                     <h1 class="head-1">New</h1>
                                                     <h2 class="head-2">Arrival</h2>
                                                     <h2 class="head-3">up to <strong class="font-weight-bold">30%</strong> off</h2>
-                                                    <p class="category"><span>New stylish shoes for men</span></p>
-                                                    <p><a href="#" class="btn btn-primary">Shop Collection</a></p>
+                                                    <p class="category">
+                                                        <span>New stylish shoes for men</span>
+                                                    </p>
+                                                    <p>
+                                                        <a href="Product.aspx" class="btn btn-primary">Shop Collection</a>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,7 +257,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="colorlib-product">
                     <div class="container">
                         <div class="row">
@@ -218,9 +268,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -229,9 +277,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Minam Meaghan</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -240,9 +286,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Men's Taja Commissioner</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -251,21 +295,18 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Russ Men's Sneakers</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-100"></div>
+                            <div class="w-100">
+                            </div>
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-5.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-5.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -274,9 +315,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-6.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-6.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -285,9 +324,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-7.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-7.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -296,32 +333,18 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-8.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-8.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-100"></div>
-                            <div class="col-lg-3 mb-4 text-center">
-                                <div class="product-entry border">
-                                    <a href="#" class="prod-img">
-                                        <img src="images/item-9.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
-                                        <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                                        <span class="price">$139.00</span>
-                                    </div>
-                                </div>
+                            <div class="w-100">
                             </div>
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-10.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-9.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -330,9 +353,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-11.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-10.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -341,21 +362,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-12.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
-                                        <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                                        <span class="price">$139.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col-lg-3 mb-4 text-center">
-                                <div class="product-entry border">
-                                    <a href="#" class="prod-img">
-                                        <img src="images/item-13.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-11.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -364,9 +371,18 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-14.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-12.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
+                                        <h2><a href="#">Women's Boots Shoes Maca</a></h2>
+                                        <span class="price">$139.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100">
+                            </div>
+                            <div class="col-lg-3 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                    <img src="images/item-13.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -375,9 +391,7 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-15.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-14.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -386,9 +400,16 @@
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
                                     <a href="#" class="prod-img">
-                                        <img src="images/item-16.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                    </a>
-                                    <div class="desc">
+                                    <img src="images/item-15.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
+                                        <h2><a href="#">Women's Boots Shoes Maca</a></h2>
+                                        <span class="price">$139.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                    <img src="images/item-16.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template"> </a>&nbsp;<div class="desc">
                                         <h2><a href="#">Women's Boots Shoes Maca</a></h2>
                                         <span class="price">$139.00</span>
                                     </div>
@@ -405,7 +426,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="colorlib-partner">
                     <div class="container">
                         <div class="row">
@@ -436,6 +456,20 @@
             </asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
             </asp:ContentPlaceHolder>
+
+            <footer id="colorlib-footer" role="contentinfo">
+                <div class="container">
+                    <div class="row row-pb-md">
+                        <div class="col footer-col colorlib-widget">
+                            <h4>
+                            About Footwear src="images/brand-5.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        </asp:ContentPlaceHolder>
+         
 
             <footer id="colorlib-footer" role="contentinfo">
                 <div class="container">
@@ -528,29 +562,29 @@
                 </div>
 
             </footer>
-            <!-- jQuery -->
-            <script src="js/jquery.min.js"></script>
-            <!-- popper -->
-            <script src="js/popper.min.js"></script>
-            <!-- bootstrap 4.1 -->
-            <script src="js/bootstrap.min.js"></script>
-            <!-- jQuery easing -->
-            <script src="js/jquery.easing.1.3.js"></script>
-            <!-- Waypoints -->
-            <script src="js/jquery.waypoints.min.js"></script>
-            <!-- Flexslider -->
-            <script src="js/jquery.flexslider-min.js"></script>
-            <!-- Owl carousel -->
-            <script src="js/owl.carousel.min.js"></script>
-            <!-- Magnific Popup -->
-            <script src="js/jquery.magnific-popup.min.js"></script>
-            <script src="js/magnific-popup-options.js"></script>
-            <!-- Date Picker -->
-            <script src="js/bootstrap-datepicker.js"></script>
-            <!-- Stellar Parallax -->
-            <script src="js/jquery.stellar.min.js"></script>
-            <!-- Main -->
-            <script src="js/main.js"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.min.js"></script>
+        <!-- popper -->
+        <script src="js/popper.min.js"></script>
+        <!-- bootstrap 4.1 -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery easing -->
+        <script src="js/jquery.easing.1.3.js"></script>
+        <!-- Waypoints -->
+        <script src="js/jquery.waypoints.min.js"></script>
+        <!-- Flexslider -->
+        <script src="js/jquery.flexslider-min.js"></script>
+        <!-- Owl carousel -->
+        <script src="js/owl.carousel.min.js"></script>
+        <!-- Magnific Popup -->
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/magnific-popup-options.js"></script>
+        <!-- Date Picker -->
+        <script src="js/bootstrap-datepicker.js"></script>
+        <!-- Stellar Parallax -->
+        <script src="js/jquery.stellar.min.js"></script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
 
         </div>
     </form>

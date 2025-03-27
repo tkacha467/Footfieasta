@@ -15,8 +15,13 @@ namespace Footfiesta
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
+          
         }
 
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+        }
     }
 }
