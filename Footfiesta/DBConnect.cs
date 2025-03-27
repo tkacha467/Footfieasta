@@ -80,5 +80,20 @@ namespace Footfiesta
             cmd = new SqlCommand($"Delete From Products where Product_Id='{p_id}';", con);
             cmd.ExecuteNonQuery();
         }
+        public int RegisterUser(string f_name, string email, string u_name, string pass, string phn, string address)
+        {
+            connection();
+            cmd = new SqlCommand($"Insert into Users (FullName,Email,Username,Password,PhoneNumber,Address) Values ('{f_name}','{email}','{u_name}','{pass}','{phn}','{address}'); ", con);
+            return cmd.ExecuteNonQuery();
+        }
+
+        public int RegisterAdmin(string f_name, string email, string u_name, string pass,string role, string phn)
+        {
+            connection();
+            cmd = new SqlCommand($"Insert into Admins (FullName,Email,Username,Password,Role,ContactNumber) Values ('{f_name}','{email}','{u_name}','{pass}','{role}','{phn}');", con);
+            return cmd.ExecuteNonQuery();
+        }
+
+
     }
 }

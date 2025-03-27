@@ -80,8 +80,8 @@ namespace Footfiesta
             pg.CurrentPageIndex = Convert.ToInt32(ViewState["id"]);
 
             // Bind DataList1 to the paged data source
-            DataList1.DataSource = pg;
-            DataList1.DataBind();
+            Repeater1.DataSource = pg;
+            Repeater1.DataBind();
         }
 
     }
