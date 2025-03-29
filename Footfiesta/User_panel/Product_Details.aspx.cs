@@ -22,6 +22,11 @@ namespace Footfiesta
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["User_Username"] == null) // Check if session is null
+            {
+                Response.Redirect("Login.aspx"); // Redirect to login page
+            }
+
             if (!IsPostBack)
             {
                 BindSizeData();

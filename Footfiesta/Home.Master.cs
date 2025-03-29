@@ -20,8 +20,16 @@ namespace Footfiesta
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Session.Abandon();
+            // Clear all session variables
             Session.Clear();
+            Session.Abandon();
+
+            // Remove authentication cookies (if applicable)
+            Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddDays(-1);
+
+            // Redirect to Home page after logout
+            Response.Redirect(ResolveUrl("~/Home.aspx"));
         }
+
     }
 }

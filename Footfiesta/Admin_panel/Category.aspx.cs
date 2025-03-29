@@ -16,6 +16,10 @@ namespace Footfiesta.Admin_penal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Admin_Username"] == null) // Check if session is null
+            {
+                Response.Redirect("Login.aspx"); // Redirect to login page
+            }
             db.connection();
             fill();
         }

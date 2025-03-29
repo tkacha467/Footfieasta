@@ -75,8 +75,8 @@
     <Content Include="App_Data\Footfiesta_log.ldf">
       <DependentUpon>Footfiesta.mdf</DependentUpon>
     </Content>
-    <Content Include="Cart.aspx" />
-    <Content Include="Checkout.aspx" />
+    <Content Include="User_panel\Cart.aspx" />
+    <Content Include="User_panel\Checkout.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\bootstrap-datepicker.css" />
@@ -198,18 +198,18 @@
     <Compile Include="Admin_register.aspx.designer.cs">
       <DependentUpon>Admin_register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cart.aspx.cs">
+    <Compile Include="User_panel\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cart.aspx.designer.cs">
+    <Compile Include="User_panel\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checkout.aspx.cs">
+    <Compile Include="User_panel\Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checkout.aspx.designer.cs">
+    <Compile Include="User_panel\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">

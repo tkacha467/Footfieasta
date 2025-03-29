@@ -16,14 +16,22 @@ namespace Footfiesta.Admin_penal // Ensure this matches ASPX
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["Admin_Username"] == null) // Check if session is null
+            {
+                Response.Redirect("Login.aspx"); // Redirect to login page
+            }
+
             if (!IsPostBack) // Prevent dropdown from resetting on postback
             {
                 db.connection();
                 ds = db.SelectCategory();
+
                 ddlcategory.DataSource = ds;
                 ddlcategory.DataTextField = ds.Tables[0].Columns[1].ColumnName;
                 ddlcategory.DataValueField = ds.Tables[0].Columns[0].ColumnName;
                 ddlcategory.DataBind();
+
                 fill();
             }
         }
@@ -46,7 +54,7 @@ namespace Footfiesta.Admin_penal // Ensure this matches ASPX
 
 
             btnSubmit.Text = "Update";
-            
+
         }
 
         protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
@@ -61,7 +69,7 @@ namespace Footfiesta.Admin_penal // Ensure this matches ASPX
 
 
 
-       
+
         void clear()
         {
             txtProductName.Text = "";
@@ -125,7 +133,8 @@ namespace Footfiesta.Admin_penal // Ensure this matches ASPX
                     }
                 }
             }
-            else {
+            else
+            {
                 int count = db.updateProduct(Convert.ToInt32(ViewState["id"]), txtProductName.Text, txtdesc.Text, Convert.ToDecimal(txtPrice.Text), Convert.ToInt32(ddlcategory.SelectedValue));
 
                 if (count > 0)
