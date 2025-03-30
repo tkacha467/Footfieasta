@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <asp:Repeater ID="Repeater1" runat="server">
+    <%-- <asp:Repeater ID="Repeater1" runat="server">
         <ItemTemplate>
             <div style="border: 1px solid #003300; padding: 15px; border-radius: 10px; background-color: #f7fdfc; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); display: inline-block; width: 220px; height: 500px; margin: 10px; text-align: center; vertical-align: top; overflow: hidden;">
 
@@ -33,15 +33,33 @@
                 </asp:LinkButton>
             </div>
         </ItemTemplate>
+    </asp:Repeater>--%>
+
+    <div class="product-container">
+    <asp:Repeater ID="Repeater1" runat="server">
+        <ItemTemplate>
+            <div class="product-card">
+                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Image_url") %>' CssClass="product-image" />
+                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Product_Name") %>' CssClass="product-name"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text='<%# Eval("Price", "{0:C}") %>' CssClass="product-price"></asp:Label>
+                <div class="button-container">
+                    <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_viewpage" CssClass="btn btn-view">View Details</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton2" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>
+                </div>
+            </div>
+        </ItemTemplate>
     </asp:Repeater>
+</div>
+
 
     <div style="text-align: center; margin-top: 20px;">
-        <asp:Button ID="btnPrev" runat="server" Text="Previous" OnClick="btnPrev_Click"
-            Style="padding: 10px 20px; background-color: #008080; color: white; border: none; border-radius: 5px; font-size: 16px; margin-right: 10px; cursor: pointer;" />
-        <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click"
-            Style="padding: 10px 20px; background-color: #008080; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;" />
-    </div>
+    <asp:Button ID="ButtonPrevious" runat="server" Text="Previous" OnClick="ButtonPrevious_Click"
+        CssClass="pagination-btn" Enabled="false" />
+    
+    <asp:Button ID="ButtonNext" runat="server" Text="Next" OnClick="ButtonNext_Click"
+        CssClass="pagination-btn" />
 
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content4" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">

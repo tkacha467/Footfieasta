@@ -314,7 +314,7 @@
     <Content Include="User_panel\Men.aspx" />
     <Content Include="User_panel\Order_Complete.aspx" />
     <Content Include="Product.aspx" />
-    <Content Include="User_panel\Product_Details.aspx" />
+    <Content Include="Product_Details.aspx" />
     <Content Include="Admin_panel\Add_product.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="User_panel\Shopping_Cart.aspx" />
@@ -416,11 +416,11 @@
     <Compile Include="Product.aspx.designer.cs">
       <DependentUpon>Product.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User_panel\Product_Details.aspx.cs">
+    <Compile Include="Product_Details.aspx.cs">
       <DependentUpon>Product_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User_panel\Product_Details.aspx.designer.cs">
+    <Compile Include="Product_Details.aspx.designer.cs">
       <DependentUpon>Product_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin_panel\Add_product.aspx.cs">

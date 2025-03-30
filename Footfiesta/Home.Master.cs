@@ -68,7 +68,7 @@ namespace Footfiesta
                     if (result != null) // If product found
                     {
                         int productId = Convert.ToInt32(result);
-                        Response.Redirect($"~/User_panel/Product_Details.aspx?id={productId}"); // Redirect to product page
+                        Response.Redirect($"~/Product_Details.aspx?id={productId}"); // Redirect to product page
                     }
                     else
                     {

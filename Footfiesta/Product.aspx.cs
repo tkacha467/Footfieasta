@@ -17,6 +17,8 @@ namespace Footfiesta
         SqlDataAdapter da;
         PagedDataSource pg;
         DBConnect db = new DBConnect();
+         int p, row;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,28 +39,6 @@ namespace Footfiesta
             return description;
         }
 
-
-
-        protected void btnNext_Click(object sender, EventArgs e)
-        {
-            int currentPage = Convert.ToInt32(ViewState["id"]);
-            if (currentPage < pg.PageCount - 1)
-            {
-                ViewState["id"] = currentPage + 1;
-                display();
-            }
-        }
-
-        protected void btnPrev_Click(object sender, EventArgs e)
-        {
-            int currentPage = Convert.ToInt32(ViewState["id"]);
-            if (currentPage > 0)
-            {
-                ViewState["id"] = currentPage - 1;
-                display();
-            }
-        }
-
         void display()
         {
             db.connection();
@@ -69,7 +49,7 @@ namespace Footfiesta
             pg = new PagedDataSource();
             pg.DataSource = ds.Tables[0].DefaultView;
             pg.AllowPaging = true;
-            pg.PageSize = 5;
+            pg.PageSize = 16;
 
             // Ensure ViewState["id"] is initialized
             if (ViewState["id"] == null)
@@ -83,6 +63,33 @@ namespace Footfiesta
             Repeater1.DataSource = pg;
             Repeater1.DataBind();
         }
+
+        protected void ButtonPrevious_Click(object sender, EventArgs e)
+        {
+            int currentPage = Convert.ToInt32(ViewState["id"]);
+            if (currentPage > 0)
+            {
+                ViewState["id"] = currentPage - 1;
+                ButtonPrevious.Enabled = currentPage - 1 > 0;
+                ButtonNext.Enabled = true;
+            }
+            display();
+        }
+
+        protected void ButtonNext_Click(object sender, EventArgs e)
+        {
+            int currentPage = Convert.ToInt32(ViewState["id"]);
+            int totalPages = (int)Math.Ceiling((double)row / pg.PageSize);
+
+            if (currentPage < totalPages - 1)
+            {
+                ViewState["id"] = currentPage + 1;
+                ButtonNext.Enabled = currentPage + 1 < totalPages - 1;
+                ButtonPrevious.Enabled = true;
+            }
+            display();
+        }
+
 
     }
 }

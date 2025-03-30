@@ -46,6 +46,111 @@
             width: 903px;
         }
     </style>
+    <style>
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .product-card {
+            border: 1px solid #003300;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f7fdfc;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+            width: calc(20% - 15px); /* 5 products per row */
+            max-width: 220px;
+            flex: 1 1 calc(20% - 15px);
+            display: flex;
+            flex-direction: column;
+            height: 360px; /* Fixed card height */
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px; /* Fixed height */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Product Name with Wrapping */
+        .product-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            min-height: 40px; /* Minimum height to ensure uniformity */
+            max-height: 50px; /* Prevents excessive growth */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+        }
+
+        /* Ensures product price stays in place */
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #008080;
+            margin: 10px 0;
+        }
+
+        /* Container for buttons */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: auto; /* Pushes buttons to the bottom */
+        }
+
+        .product-card .btn {
+            display: block;
+            padding: 8px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .btn-view {
+            background-color: #008080;
+        }
+
+        .btn-cart {
+            background-color: #004d4d;
+        }
+
+        /* Pagination Button Styling */
+        .pagination-btn {
+            padding: 10px 20px;
+            background-color: #008080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+            .pagination-btn:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -78,7 +183,7 @@
                             <div class="col-sm-5 col-md-3">
                                 <div action="#" class="search-wrap">
                                     <div style="display: flex; align-items: center; background-color: #fff; border-radius: 25px; overflow: hidden; border: 2px solid #ccc; width: 300px; padding: 5px;">
-                                        
+
                                         <asp:TextBox ID="txtsearch" runat="server" placeholder="Search"
                                             Style="border: none !important; outline: none !important; box-shadow: none !important; padding: 10px 15px; font-size: 16px; width: 250px; background: transparent; appearance: none; -webkit-appearance: none; -moz-appearance: none;" OnTextChanged="txtsearch_TextChanged" />
 
@@ -90,7 +195,7 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
 
 
                         </div>
@@ -105,13 +210,13 @@
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Add_product.aspx") %>">Add Product</a></li>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Category.aspx") %>">Add Category</a></li>
                                     <% } %>
+                                    <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>
 
                                     <% if (Session["User_Username"] != null)
                                         { %>
                                     <li class="has-dropdown">
                                         <a href="<%= ResolveUrl("~/User_panel/Men.aspx") %>">Men</a>
                                         <ul class="dropdown">
-                                            <li><a href="<%= ResolveUrl("~/User_panel/product_details.aspx") %>">Product Detail</a></li>
                                             <li><a href="<%= ResolveUrl("~/User_panel/shopping_cart.aspx") %>">Shopping Cart</a></li>
                                             <li><a href="<%= ResolveUrl("~/User_panel/checkout.aspx") %>">Checkout</a></li>
                                             <li><a href="<%= ResolveUrl("~/User_panel/order_complete.aspx") %>">Order Complete</a></li>
