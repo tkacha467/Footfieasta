@@ -312,6 +312,18 @@
             </div>
         </div>
     </div>
+
+    <asp:Label ID="lblProductName" runat="server" Font-Bold="True" Font-Size="24px"></asp:Label>
+    <br />
+    <asp:Image ID="imgProduct" runat="server" Width="300px" Height="300px" />
+    <br />
+    <asp:Label ID="lblPrice" runat="server" Font-Bold="True" Font-Size="20px" ForeColor="Red"></asp:Label>
+    <br />
+    <asp:Label ID="lblDescription" runat="server" Font-Size="16px"></asp:Label>
+    <br />
+    <asp:Button ID="btnBuyNow" runat="server" Text="Buy Now" CssClass="btn btn-primary" />
+
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
