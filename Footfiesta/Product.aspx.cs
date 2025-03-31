@@ -29,6 +29,7 @@ namespace Footfiesta
 
         void display(int categoryId)
         {
+            
             db.connection();
             string query = "SELECT * FROM Products WHERE Category_Id = @CategoryId";
 

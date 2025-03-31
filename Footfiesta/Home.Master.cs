@@ -166,7 +166,7 @@ namespace Footfiesta
         }
         private void SearchProduct(string searchQuery)
         {
-            using (SqlConnection conn = db.connection())
+            using (SqlConnection conn = db.connection())  // Ensure you are getting a valid connection
             {
                 string query = "SELECT Product_Id FROM Products WHERE Product_Name LIKE @Search";
 
@@ -174,22 +174,34 @@ namespace Footfiesta
                 {
                     cmd.Parameters.AddWithValue("@Search", "%" + searchQuery + "%");
 
-                    //conn.Open();
-                    object result = cmd.ExecuteScalar(); // Get the first matching ProductID
+                    try
+                    {
+                        conn.Open(); // 🔴 Ensure the connection is open before executing
 
-                    if (result != null) // If product found
-                    {
-                        int productId = Convert.ToInt32(result);
-                        Response.Redirect($"~/Product_Details.aspx?id={productId}"); // Redirect to product page
+                        object result = cmd.ExecuteScalar(); // Get the first matching ProductID
+
+                        if (result != null) // If product found
+                        {
+                            int productId = Convert.ToInt32(result);
+                            Response.Redirect($"~/Product_Details.aspx?Product_Id={productId}"); // Redirect to product page
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Product not found!');</script>");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        // Show alert or redirect to 'No Product Found' page
-                        Response.Write("<script>alert('Product not found!');</script>");
+                        Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+                    }
+                    finally
+                    {
+                        conn.Close(); // 🔴 Ensure the connection is closed after execution
                     }
                 }
             }
         }
+
 
         protected void txtsearch_TextChanged(object sender, EventArgs e)
         {

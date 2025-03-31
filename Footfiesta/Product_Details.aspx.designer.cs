@@ -15,40 +15,40 @@ namespace Footfiesta
     {
 
         /// <summary>
-        /// rptProducts control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// lblProductName control.
+        /// Image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductName;
+        protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// imgProduct control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduct;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// lblPrice control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrice;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
         /// lblDescription control.
@@ -60,12 +60,21 @@ namespace Footfiesta
         protected global::System.Web.UI.WebControls.Label lblDescription;
 
         /// <summary>
-        /// btnBuyNow control.
+        /// RepeaterProductDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyNow;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterProductDetails;
+
+        /// <summary>
+        /// rptSizes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptSizes;
     }
 }
