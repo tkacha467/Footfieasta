@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Footfiesta
 {
@@ -17,41 +13,40 @@ namespace Footfiesta
         SqlDataAdapter da;
         PagedDataSource pg;
         DBConnect db = new DBConnect();
-         int p, row;
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                display();
+                LoadCategories();
+
+                // Set a default category (Men: 2)
+                ViewState["selectedCategory"] = 2;
+                ViewState["id"] = 0; // Reset pagination
+                display(2); // Load products for Men
             }
-        }
-        public string FormatDescription(string description, string productId)
-        {
-            int maxLength = 50;
-            if (!string.IsNullOrEmpty(description) && description.Length > maxLength)
-            {
-                string shortDesc = description.Substring(0, maxLength) + "... ";
-                string moreLink = $"<a href='javascript:void(0);' onclick='showFullDescription(\"desc_{productId}\")' style='color:#008080; text-decoration:none;'>more</a>";
-                return $"<span data-full='{description}'>{shortDesc}{moreLink}</span>";
-            }
-            return description;
         }
 
-        void display()
+        void display(int categoryId)
         {
             db.connection();
-            da = new SqlDataAdapter("SELECT * FROM Products", db.connection());
-            ds = new DataSet();
-            da.Fill(ds);
+            string query = "SELECT * FROM Products WHERE Category_Id = @CategoryId";
 
-            pg = new PagedDataSource();
-            pg.DataSource = ds.Tables[0].DefaultView;
-            pg.AllowPaging = true;
-            pg.PageSize = 16;
+            using (SqlCommand cmd = new SqlCommand(query, db.connection()))
+            {
+                cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                da = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                da.Fill(ds);
+            }
 
-            // Ensure ViewState["id"] is initialized
+            pg = new PagedDataSource
+            {
+                DataSource = ds.Tables[0].DefaultView,
+                AllowPaging = true,
+                PageSize = 16
+            };
+
             if (ViewState["id"] == null)
             {
                 ViewState["id"] = 0;
@@ -59,37 +54,87 @@ namespace Footfiesta
 
             pg.CurrentPageIndex = Convert.ToInt32(ViewState["id"]);
 
-            // Bind DataList1 to the paged data source
+            ButtonPrevious.Enabled = pg.CurrentPageIndex > 0;
+            ButtonNext.Enabled = pg.CurrentPageIndex < (pg.PageCount - 1);
+
             Repeater1.DataSource = pg;
             Repeater1.DataBind();
         }
 
+        protected void CategoryTab_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            int categoryId = Convert.ToInt32(btn.CommandArgument);
+
+            ViewState["selectedCategory"] = categoryId;
+            ViewState["id"] = 0; // Reset pagination when changing categories
+
+            display(categoryId);
+        }
+
         protected void ButtonPrevious_Click(object sender, EventArgs e)
         {
-            int currentPage = Convert.ToInt32(ViewState["id"]);
-            if (currentPage > 0)
+            int categoryId = Convert.ToInt32(ViewState["selectedCategory"]);
+
+            if (ViewState["id"] == null)
             {
-                ViewState["id"] = currentPage - 1;
-                ButtonPrevious.Enabled = currentPage - 1 > 0;
-                ButtonNext.Enabled = true;
+                ViewState["id"] = 0;
             }
-            display();
+
+            int p = Convert.ToInt32(ViewState["id"]) - 1;
+            ViewState["id"] = p < 0 ? 0 : p;
+
+            display(categoryId);
         }
 
         protected void ButtonNext_Click(object sender, EventArgs e)
         {
-            int currentPage = Convert.ToInt32(ViewState["id"]);
-            int totalPages = (int)Math.Ceiling((double)row / pg.PageSize);
+            int categoryId = Convert.ToInt32(ViewState["selectedCategory"]);
 
-            if (currentPage < totalPages - 1)
+            if (ViewState["id"] == null)
             {
-                ViewState["id"] = currentPage + 1;
-                ButtonNext.Enabled = currentPage + 1 < totalPages - 1;
-                ButtonPrevious.Enabled = true;
+                ViewState["id"] = 0;
             }
-            display();
+
+            int p = Convert.ToInt32(ViewState["id"]) + 1;
+            ViewState["id"] = p;
+
+            display(categoryId);
         }
 
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            string productId = e.CommandArgument.ToString();
 
+            if (e.CommandName == "cmd_viewpage")
+            {
+                Response.Redirect($"ProductDetails.aspx?id={productId}");
+            }
+            else if (e.CommandName == "cmd_adtc")
+            {
+                AddToCart(productId);
+            }
+        }
+
+        void AddToCart(string productId)
+        {
+            List<string> cart = Session["Cart"] as List<string> ?? new List<string>();
+            cart.Add(productId);
+            Session["Cart"] = cart;
+        }
+
+        private void LoadCategories()
+        {
+            using (SqlConnection conn = db.connection())
+            {
+                string query = "SELECT Category_Id, Category_name FROM Category";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                rptCategories.DataSource = dt;
+                rptCategories.DataBind();
+            }
+        }
     }
 }

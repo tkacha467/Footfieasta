@@ -313,6 +313,126 @@
         </div>
     </div>
 
+
+
+    <%--<div class="colorlib-product">
+        <div class="container">
+            <div class="row row-pb-lg product-detail-wrap">
+                <div class="col-sm-8">
+                    <div class="owl-carousel">
+                        <asp:Repeater ID="rptImages" runat="server">
+                            <ItemTemplate>
+                                <div class="item">
+                                    <div class="product-entry border">
+                                        <a href="#" class="prod-img">
+                                            <img src='<%# Eval("ImageUrl") %>' class="img-fluid" alt='<%# Eval("AltText") %>' />
+                                        </a>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="product-desc">
+                        <h3><asp:Literal ID="ltlProductName" runat="server"></asp:Literal></h3>
+                        <p class="price">
+                            <span><asp:Literal ID="ltlPrice" runat="server"></asp:Literal></span>
+                            <span class="rate">
+                                <i class="icon-star-full"></i>
+                                <i class="icon-star-full"></i>
+                                <i class="icon-star-full"></i>
+                                <i class="icon-star-full"></i>
+                                <i class="icon-star-half"></i>
+                                (74 Rating)
+                            </span>
+                        </p>
+                        <p><asp:Literal ID="ltlDescription" runat="server"></asp:Literal></p>
+                        <div class="size-wrap">
+                            <h4>Size</h4>
+                            <asp:Repeater ID="rptSizes" runat="server">
+                                <ItemTemplate>
+                                    <li><a href="#"><%# Eval("Size") %></a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                        <div class="block-26 mb-4">
+                            <h4>Width</h4>
+                            <asp:Repeater ID="rptWidths" runat="server">
+                                <ItemTemplate>
+                                    <li><a href="#"><%# Eval("Width") %></a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                        <div class="input-group mb-4">
+                            <span class="input-group-btn">
+                                <button type="button" class="quantity-left-minus btn" onclick="DecreaseQuantity();">
+                                    <i class="icon-minus2"></i>
+                                </button>
+                            </span>
+                            <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control input-number" Text="1" />
+                            <span class="input-group-btn ml-1">
+                                <button type="button" class="quantity-right-plus btn" onclick="IncreaseQuantity();">
+                                    <i class="icon-plus2"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <asp:Button ID="btnAddToCart" runat="server" CssClass="btn btn-primary btn-addtocart" Text="Add to Cart" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-12 pills">
+                            <div class="bd-example bd-example-tabs">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="pill" href="#pills-description">Description</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#pills-manufacturer">Manufacturer</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#pills-review">Review</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="pills-description">
+                                        <asp:Literal ID="ltlLongDescription" runat="server"></asp:Literal>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-manufacturer">
+                                        <asp:Literal ID="ltlManufacturerInfo" runat="server"></asp:Literal>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-review">
+                                        <asp:Repeater ID="rptReviews" runat="server">
+                                            <ItemTemplate>
+                                                <div class="review">
+                                                    <div class="user-img" style='background-image: url(<%# Eval("UserImage") %>)'></div>
+                                                    <div class="desc">
+                                                        <h4>
+                                                            <span class="text-left"><%# Eval("UserName") %></span>
+                                                            <span class="text-right"><%# Eval("Date") %></span>
+                                                        </h4>
+                                                        <p><%# Eval("Comment") %></p>
+                                                    </div>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>--%>
+
     <asp:Label ID="lblProductName" runat="server" Font-Bold="True" Font-Size="24px"></asp:Label>
     <br />
     <asp:Image ID="imgProduct" runat="server" Width="300px" Height="300px" />
