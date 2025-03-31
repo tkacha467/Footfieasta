@@ -15,49 +15,13 @@ namespace Footfiesta
     {
 
         /// <summary>
-        /// rptSizes control.
+        /// rptProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSizes;
-
-        /// <summary>
-        /// btnDecrease control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDecrease;
-
-        /// <summary>
-        /// txtQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
-
-        /// <summary>
-        /// btnIncrease control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnIncrease;
-
-        /// <summary>
-        /// selectedSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField selectedSize;
+        protected global::System.Web.UI.WebControls.Repeater rptProducts;
 
         /// <summary>
         /// lblProductName control.

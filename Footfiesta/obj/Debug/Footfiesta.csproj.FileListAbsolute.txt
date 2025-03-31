@@ -293,8 +293,6 @@ C:\Users\munga\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.csproj.
 C:\Users\munga\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.csproj.CopyComplete
 C:\Users\munga\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.dll
 C:\Users\munga\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.pdb
-C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.csproj.AssemblyReference.cache
-C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.csproj.CoreCompileInputs.cache
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\bin\Footfiesta.dll.config
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\bin\Footfiesta.dll
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\bin\Footfiesta.pdb
@@ -349,6 +347,8 @@ C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\bin\roslyn\VBCSCompiler.exe
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.csproj.AssemblyReference.cache
+C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.csproj.CoreCompileInputs.cache
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.csproj.CopyComplete
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.dll
 C:\Users\kacha\Source\Repos\Footfieasta1\Footfiesta\obj\Debug\Footfiesta.pdb

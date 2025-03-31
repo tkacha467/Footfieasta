@@ -18,13 +18,13 @@ namespace Footfiesta
         PagedDataSource pg;
         DBConnect db = new DBConnect();
         int p, row;
-      
+
         protected System.Web.UI.WebControls.LinkButton btnSearch;
         protected Repeater Repeater1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (IsPostBack)
             {
                 display();
             }
@@ -33,111 +33,109 @@ namespace Footfiesta
         {
 
         }
+        protected void rptPagination_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Page")
+            {
+                ViewState["id"] = Convert.ToInt32(e.CommandArgument) - 1; // Set page index (0-based)
+                display();
+            }
+        }
+
         void display()
         {
-            db.connection();
-            da = new SqlDataAdapter("SELECT * FROM Products", db.connection());
-            ds = new DataSet();
-            da.Fill(ds);
-
-            pg = new PagedDataSource();
-            pg.DataSource = ds.Tables[0].DefaultView;
-            pg.AllowPaging = true;
-            pg.PageSize = 8;
-
-            // Ensure ViewState["id"] is initialized
-            if (ViewState["id"] == null)
+            try
             {
-                ViewState["id"] = 0;
+                db.connection();
+                da = new SqlDataAdapter("SELECT * FROM Products", db.connection());
+                ds = new DataSet();
+                da.Fill(ds);
+
+                pg = new PagedDataSource
+                {
+                    DataSource = ds.Tables[0].DefaultView,
+                    AllowPaging = true,
+                    PageSize = 8
+                };
+
+                if (ViewState["id"] == null)
+                {
+                    ViewState["id"] = 0;
+                }
+
+                int currentPage = Convert.ToInt32(ViewState["id"]);
+                pg.CurrentPageIndex = currentPage;
+
+                // Ensure Repeater2 is not null before binding
+                if (Repeater2 != null)
+                {
+                    Repeater2.DataSource = pg;
+                    Repeater2.DataBind();
+                }
+                else
+                {
+                    Response.Write("<script>console.log('Repeater2 is null. Check its ID and Page_Load logic.');</script>");
+                }
+
+                // Bind dynamic page numbers to pagination Repeater
+                int totalPages = pg.PageCount;
+                if (totalPages > 1 && rptPagination != null)
+                {
+                    List<int> pages = Enumerable.Range(1, totalPages).ToList();
+                    rptPagination.DataSource = pages;
+                    rptPagination.DataBind();
+                }
+
+                // Update button states
+                if (btnPrev != null)
+                    btnPrev.Enabled = (currentPage > 0);
+
+                if (btnNext != null)
+                    btnNext.Enabled = (currentPage < (pg.PageCount - 1));
             }
-
-            pg.CurrentPageIndex = Convert.ToInt32(ViewState["id"]);
-
-            // Bind DataList1 to the paged data source
-            if (Repeater2 != null)
+            catch (Exception ex)
             {
-                Repeater2.DataSource = pg;
-                Repeater2.DataBind();
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
         }
 
-
-        protected void ButtonPrevious_Click(object sender, EventArgs e) // for previous
+        protected void btnPrev_Click(object sender, EventArgs e)
         {
-            // Ensure display() is called before using pg
-            display();
-
-
-            if (pg == null)
-            {
-                return; // Prevent error if pg is not initialized
-            }
-
-            // Ensure ViewState["id"] is properly initialized
             if (ViewState["id"] == null)
             {
                 ViewState["id"] = 0;
             }
 
-            // Decrement page index
-            int p = Convert.ToInt32(ViewState["id"]) - 1;
-
-            // Ensure it doesn't go below 0
-            if (p < 0)
+            int currentPage = Convert.ToInt32(ViewState["id"]);
+            if (currentPage > 0)
             {
-                p = 0;
+                ViewState["id"] = currentPage - 1;
             }
 
-            ViewState["id"] = p;
-
-            // Disable Previous button when on the first page
-            ButtonPrevious.Enabled = (p > 0);
-
-            // Enable Next button when not on the last page
-            ButtonNext.Enabled = true;
-
-            // Refresh the display
             display();
-
         }
-
-        protected void ButtonNext_Click(object sender, EventArgs e) // for next
+        protected void btnNext_Click(object sender, EventArgs e)
         {
-            // Ensure display() is called before using pg
-            display();
-
-
-            if (pg == null)
-            {
-                // Prevent error if pg is not properly initialized
-                return;
-            }
-
-            ButtonPrevious.Enabled = true;
-
-            // Ensure ViewState["id"] is properly initialized
             if (ViewState["id"] == null)
             {
                 ViewState["id"] = 0;
             }
 
-            // Increment the page index
-            int p = Convert.ToInt32(ViewState["id"]) + 1;
-            ViewState["id"] = p;
+            int currentPage = Convert.ToInt32(ViewState["id"]);
+            int totalPages = pg.PageCount;
 
-            // Calculate total number of pages
-            int temp = (pg.DataSourceCount / pg.PageSize);
-
-            // Disable the next button when the last page is reached
-            if (p >= temp)
+            if (currentPage < totalPages - 1)
             {
-                ButtonNext.Enabled = false;
+                ViewState["id"] = currentPage + 1;
             }
 
-            // Refresh the display
             display();
-
         }
+
+
+
+
+
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
@@ -203,9 +201,11 @@ namespace Footfiesta
             Response.Redirect(ResolveUrl("~/Product.aspx"));
         }
 
+
+
         protected void Repeater2_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            
+
         }
     }
 

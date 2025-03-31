@@ -434,31 +434,64 @@
                                 <h2>Best Sellers</h2>
                             </div>
                         </div>
-                        <%--Repeater start for diplay some product--%>
-                        <div class="product-container">
-                            <asp:Repeater ID="Repeater2" runat="server" OnItemCommand="Repeater2_ItemCommand">
-                                <ItemTemplate>
-                                    <div class="product-card">
-                                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Image_url") %>' CssClass="product-image" />
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Product_Name") %>' CssClass="product-name"></asp:Label>
-                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Price", "{0:C}") %>' CssClass="product-price"></asp:Label>
-                                        <div class="button-container">
-                                            <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_viewpage" CssClass="btn btn-view">View Details</asp:LinkButton>
-                                            <asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>
+                        <asp:ScriptManager runat="server" />
+
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+
+                                <%-- Repeater for displaying products --%>
+                                <div class="product-container">
+                                    <asp:Repeater ID="Repeater2" runat="server">
+                                        <ItemTemplate>
+                                            <div class="product-card">
+                                                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Image_url") %>' CssClass="product-image" />
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Product_Name") %>' CssClass="product-name"></asp:Label>
+                                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("Price", "{0:C}") %>' CssClass="product-price"></asp:Label>
+                                                <div class="button-container">
+                                                    <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_viewpage" CssClass="btn btn-view">View Details</asp:LinkButton>
+                                                    <asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+
+                                <%-- Pagination --%>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <div class="block-27">
+                                            <ul>
+                                                <%-- Previous Page Button --%>
+                                                <li>
+                                                    <asp:LinkButton ID="btnPrev" runat="server" CssClass="pagination-btn" OnClick="btnPrev_Click">
+                                <i class="ion-ios-arrow-back"></i>
+                                                    </asp:LinkButton>
+                                                </li>
+
+                                                <%-- Dynamic Page Numbers --%>
+                                                <asp:Repeater ID="rptPagination" runat="server" OnItemCommand="rptPagination_ItemCommand">
+                                                    <ItemTemplate>
+                                                        <li class='<%# Convert.ToInt32(Container.DataItem) == Convert.ToInt32(ViewState["id"] ?? 0) + 1 ? "active" : "" %>'>
+                                                            <asp:LinkButton ID="btnPage" runat="server" Text='<%# Container.DataItem %>' CommandArgument='<%# Container.DataItem %>' CssClass="page-link" CommandName="PageNumber" />
+                                                        </li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+
+                                                <%-- Next Page Button --%>
+                                                <li>
+                                                    <asp:LinkButton ID="btnNext" runat="server" CssClass="pagination-btn" OnClick="btnNext_Click">
+                                <i class="ion-ios-arrow-forward"></i>
+                                                    </asp:LinkButton>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </div>
-                        <%--repeater end--%>
+                                </div>
+
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
 
 
-                        <div style="text-align: center; margin-top: 20px;">
-                            <asp:Button ID="ButtonPrevious" runat="server" Text="Previous" OnClick="ButtonPrevious_Click"
-                                CssClass="pagination-btn" Enabled="false" />
-                            <asp:Button ID="ButtonNext" runat="server" Text="Next" OnClick="ButtonNext_Click"
-                                CssClass="pagination-btn" />
-                        </div>
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <p>

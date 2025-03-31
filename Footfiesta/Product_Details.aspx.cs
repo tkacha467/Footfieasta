@@ -25,10 +25,20 @@ namespace Footfiesta
 
         protected void Page_Load(object sender, EventArgs e)
         {
-          
-
             if (!IsPostBack)
             {
+                // Check if Session contains a valid Product_Id
+                if (Session["SelectedProductId"] != null)
+                {
+                    string productId = Session["SelectedProductId"].ToString();
+                    LoadProductDetails(productId);
+                }
+                else
+                {
+                    // Redirect to product listing page if session is empty
+                    Response.Redirect("Products.aspx");
+                }
+           
                 BindSizeData();
                 if (Request.QueryString["id"] != null)
                 {
@@ -47,6 +57,37 @@ namespace Footfiesta
         {
 
         }
+        private void LoadProductDetails(string productId)
+        {
+            string query = "SELECT Product_Name, Price, Description, Image_url FROM Products WHERE Product_Id = @ProductId";
+
+            using (SqlConnection conn = db.connection())
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ProductId", productId);
+
+                    // Check if the connection is already open before opening it
+                    if (conn.State == System.Data.ConnectionState.Closed)
+                    {
+                        conn.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            lblProductName.Text = reader["Product_Name"].ToString();
+                            lblPrice.Text = Convert.ToDecimal(reader["Price"]).ToString("C");
+                            lblDescription.Text = reader["Description"].ToString();
+                            imgProduct.ImageUrl = reader["Image_url"].ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+
         private void LoadProductDetails(int productId)
         {
             using (SqlConnection conn = db.connection())

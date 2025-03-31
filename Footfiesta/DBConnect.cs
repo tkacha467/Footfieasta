@@ -12,14 +12,21 @@ namespace Footfiesta
         SqlConnection con;
         SqlDataAdapter da;
         DataSet ds;
-       
+
         string s = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
-      
+
 
         public SqlConnection connection()
         {
             con = new SqlConnection(s);
             con.Open();
+
+            // Ensure that the connection is closed before returning it
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+
             return con;
         }
 
@@ -99,7 +106,7 @@ namespace Footfiesta
             return cmd.ExecuteNonQuery();
         }
 
-       
+
 
     }
 }

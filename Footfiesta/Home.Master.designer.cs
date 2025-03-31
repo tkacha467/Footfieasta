@@ -69,6 +69,15 @@ namespace Footfiesta
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
 
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// Repeater2 control.
         /// </summary>
         /// <remarks>
@@ -78,22 +87,31 @@ namespace Footfiesta
         protected global::System.Web.UI.WebControls.Repeater Repeater2;
 
         /// <summary>
-        /// ButtonPrevious control.
+        /// btnPrev control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPrevious;
+        protected global::System.Web.UI.WebControls.LinkButton btnPrev;
 
         /// <summary>
-        /// ButtonNext control.
+        /// rptPagination control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonNext;
+        protected global::System.Web.UI.WebControls.Repeater rptPagination;
+
+        /// <summary>
+        /// btnNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnNext;
 
         /// <summary>
         /// Button2 control.

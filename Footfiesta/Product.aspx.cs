@@ -40,6 +40,13 @@ namespace Footfiesta
                 da.Fill(ds);
             }
 
+            // If no products exist, redirect to Products.aspx
+            if (ds.Tables[0].Rows.Count == 0)
+            {
+                Response.Redirect(ResolveUrl("~/Products.aspx"));
+                return;
+            }
+
             pg = new PagedDataSource
             {
                 DataSource = ds.Tables[0].DefaultView,
@@ -104,15 +111,20 @@ namespace Footfiesta
 
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            string productId = e.CommandArgument.ToString();
-
             if (e.CommandName == "cmd_viewpage")
             {
-                Response.Redirect($"ProductDetails.aspx?id={productId}");
-            }
-            else if (e.CommandName == "cmd_adtc")
-            {
-                AddToCart(productId);
+                // Store Product_Id in Session
+                Session["SelectedProductId"] = e.CommandArgument.ToString();
+
+                // Redirect to Product_Details.aspx
+                if (Session["SelectedProductId"] != null)
+                {
+                    Response.Redirect(ResolveUrl("~/Product_Details.aspx"));
+                }
+                else
+                {
+                    Response.Redirect(ResolveUrl("~/Products.aspx"));
+                }
             }
         }
 
