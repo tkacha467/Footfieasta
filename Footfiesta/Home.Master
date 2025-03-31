@@ -106,6 +106,7 @@
             margin-right: auto;
         }
 
+        /* Standardized Product Card */
         .product-card {
             border: 1px solid #003300;
             padding: 15px;
@@ -119,34 +120,34 @@
             flex: 1 1 calc(25% - 15px);
             display: flex;
             flex-direction: column;
-            height: 360px; /* Fixed card height */
+            justify-content: space-between;
+            height: 480px; /* Fixed height for uniformity */
         }
 
-
+        /* Fixed Image Size */
         .product-image {
             width: 100%;
-            height: 150px; /* Fixed height */
-            object-fit: cover;
+            height: 200px;
+            object-fit: contain;
             border-radius: 10px;
         }
 
-        /* Product Name with Wrapping */
+        /* Product Name Styling - Allows 2 to 3 lines */
         .product-name {
             font-size: 16px;
             font-weight: bold;
             color: #333;
-            min-height: 40px; /* Minimum height to ensure uniformity */
-            max-height: 50px; /* Prevents excessive growth */
+            height: 45px; /* Fixed height to ensure consistency */
+            line-height: 1.3em; /* Better text spacing */
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Allows up to 2 lines */
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5px;
+            text-align: center;
+            padding: 5px;
         }
 
-        /* Ensures product price stays in place */
+        /* Product Price */
         .product-price {
             font-size: 18px;
             font-weight: bold;
@@ -154,14 +155,15 @@
             margin: 10px 0;
         }
 
-        /* Container for buttons */
+        /* Buttons Aligned at Bottom */
         .button-container {
             display: flex;
             flex-direction: column;
             gap: 5px;
-            margin-top: auto; /* Pushes buttons to the bottom */
+            margin-top: auto;
         }
 
+        /* Button Styling */
         .product-card .btn {
             display: block;
             padding: 8px 15px;
@@ -169,7 +171,6 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 14px;
-            margin: 5px 0;
             text-align: center;
         }
 
