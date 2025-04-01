@@ -153,10 +153,22 @@ namespace Footfiesta
             return cmd.ExecuteNonQuery();
         }
 
-        //public DataSet SelectCart()
-        //{
-        //    connection();
-        //}
+        public DataSet SelectProduct_id(string name)
+        {
+            connection();
+            da = new SqlDataAdapter($"select Product_Id from Products where Product_Name='{name}'",con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+        public DataSet CartItmes(int Product_id) {
+            connection();
+            da = new SqlDataAdapter($"SELECT P.Product_Name, P.Price, P.Image_url, C.Quantity From Products P INNER JOIN Cart_tbl C ON P.Product_Id = C.Product_Id where C.Product_Id ='{Product_id}'", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
 
     }
 }

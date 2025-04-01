@@ -60,46 +60,39 @@
                     <div class="product-cart d-flex">
                         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                             <ItemTemplate>
-                                <div class="one-forth">
-                                    <asp:Image ID="Image1" class="product-img" ImageUrl='<%# Eval("Image_url") %>' runat="server" />
-                                </div>
-                                <div class="display-tc">
-                                    <h3>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Product_Name") %>'></asp:Label>
-                                    </h3>
-                                </div>
-                                </div>
-                            </ItemTemplate>
-                            <ItemTemplate>
-                                <div class="one-eight text-center">
-                                    <div class="display-tc">
-
-                                        <asp:Label ID="Label2" class="price" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
+                                <div class="product-cart d-flex">
+                                    <div class="one-forth">
+                                        <asp:Image ID="Image1" class="product-img" ImageUrl='<%# Eval("Image_url") %>' runat="server" />
                                     </div>
-                                </div>
-                            </ItemTemplate>
-                            <ItemTemplate>
-                                <div class="one-eight text-center">
                                     <div class="display-tc">
-                                        <asp:TextBox ID="TextBox1" runat="server" class="form-control input-number text-center" value="1" min="1" max="100"></asp:TextBox>
+                                        <h3>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Product_Name") %>'></asp:Label>
+                                        </h3>
                                     </div>
-                                </div>
-                            </ItemTemplate>
-                            <ItemTemplate>
-                                <div class="one-eight text-center">
-                                    <div class="display-tc">
-                                        <asp:Label ID="Label3" class="price" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
+                                    <div class="one-eight text-center">
+                                        <div class="display-tc">
+                                            <asp:Label ID="Label2" class="price" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
+                                        </div>
                                     </div>
-                                </div>
-                            </ItemTemplate>
-                            <ItemTemplate>
-                                <div class="one-eight text-center">
-                                    <div class="display-tc">
-                                        <asp:LinkButton ID="LinkButton1" class="closed" runat="server">X</asp:LinkButton>
+                                    <div class="one-eight text-center">
+                                        <div class="display-tc">
+                                            <asp:TextBox ID="TextBox1" runat="server" class="form-control input-number text-center" value="1" min="1" max="100"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="one-eight text-center">
+                                        <div class="display-tc">
+                                            <asp:Label ID="Label3" class="price" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="one-eight text-center">
+                                        <div class="display-tc">
+                                            <asp:LinkButton ID="LinkButton1" class="closed" runat="server">X</asp:LinkButton>
+                                        </div>
                                     </div>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
+
                     </div>
                 </div>
             </div>
@@ -107,7 +100,7 @@
                 <div class="col-md-12">
                     <div class="total-wrap">
                         <div class="row">
-                         
+
                             <div class="col-sm-4 text-center">
                                 <div class="total">
                                     <div class="sub">

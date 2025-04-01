@@ -13,16 +13,13 @@ namespace Footfiesta
     public partial class Product_Details : System.Web.UI.Page
     {
         DBConnect db = new DBConnect();
-
+        DataSet ds;
         void fill()
         {
             rptSizes.DataSource = db.ShowSize();
             rptSizes.DataBind();
         }
         // Bind size data (if needed for your case)
-       
-
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,7 +47,7 @@ namespace Footfiesta
                 fill();
 
                 // Bind other product details (example)
-                
+
             }
         }
 
@@ -103,9 +100,9 @@ namespace Footfiesta
         // Add to cart functionality (implement as needed)
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-           
-               
-            
+
+
+
         }
 
         // Submit functionality (implement as needed)
@@ -114,17 +111,26 @@ namespace Footfiesta
             // Handle form submission (you can implement form handling here)
         }
 
-        protected void btnAddToCart_Command(object sender, CommandEventArgs e)
+        protected void btnAddToCart_Command1(object sender, CommandEventArgs e)
         {
-
             // Store Product_Id in Session
-            Session["SelectedProductId"] = e.CommandArgument.ToString();
+            ds = new DataSet();
+            ds = db.SelectProduct_id(e.CommandArgument.ToString());
+            ViewState["Product_Id"] = ds.Tables[0].Rows[0]["Product_Id"];
+            Session["SelectedProductId"] = ViewState["Product_Id"].ToString();
 
             // Redirect to Product_Details.aspx
             if (Session["SelectedProductId"] != null)
             {
-                db.InsertCart(Convert.ToInt32(Session["SelectedProductId"]), Convert.ToInt32(Session["User_Username"]), Convert.ToInt32(txtQuantity.Text));
-                Response.Redirect(ResolveUrl("~/Cart.aspx"));
+                int count = db.InsertCart(Convert.ToInt32(Session["SelectedProductId"]), 1, 1);
+                if (count > 0)
+                {
+                    Response.Redirect(ResolveUrl("~/User_panel/Cart.aspx"));
+                }
+                else
+                {
+                    Response.Write("Error");
+                }
             }
             else
             {
