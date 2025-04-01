@@ -14,6 +14,11 @@ namespace Footfiesta
     {
         SqlCommand cmd;
         DBConnect db = new DBConnect();
+
+        void conn()
+        {
+            db.connection();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             db.connection();
@@ -22,7 +27,7 @@ namespace Footfiesta
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            db.connection();
+            conn();
             cmd = new SqlCommand($"Select Count(*) from Users where Username = '{txtUsername.Text}' and Password = '{txtPassword.Text}';",db.connection());
             int i = Convert.ToInt32(cmd.ExecuteScalar());
              

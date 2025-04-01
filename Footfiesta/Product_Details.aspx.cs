@@ -14,33 +14,13 @@ namespace Footfiesta
     {
         DBConnect db = new DBConnect();
 
-        // Bind size data (if needed for your case)
-        private void BindSizeData()
+        void fill()
         {
-            // Check if rptSizes is null
-            if (rptSizes == null)
-            {
-                Console.WriteLine("Error: rptSizes Repeater control is null.");
-                return;
-            }
-
-            // List of sizes to display
-            List<double> sizes = new List<double> { 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14 };
-
-            // Creating a list of anonymous objects with the SizeValue property
-            var sizeList = sizes.Select(size => new { SizeValue = size }).ToList();
-
-            // Check if sizeList is not null or empty before binding
-            if (sizeList != null && sizeList.Count > 0)
-            {
-                rptSizes.DataSource = sizeList;
-                rptSizes.DataBind();
-            }
-            else
-            {
-                Console.WriteLine("Error: Size data is empty.");
-            }
+            rptSizes.DataSource = db.ShowSize();
+            rptSizes.DataBind();
         }
+        // Bind size data (if needed for your case)
+       
 
 
 
@@ -67,7 +47,7 @@ namespace Footfiesta
                 }
 
                 // Bind size data if needed
-                BindSizeData();
+                fill();
 
                 // Bind other product details (example)
                 
@@ -123,14 +103,33 @@ namespace Footfiesta
         // Add to cart functionality (implement as needed)
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            // Add the product to the user's cart (you can implement cart logic here)
-            // For example, store product info in session or database
+           
+               
+            
         }
 
         // Submit functionality (implement as needed)
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             // Handle form submission (you can implement form handling here)
+        }
+
+        protected void btnAddToCart_Command(object sender, CommandEventArgs e)
+        {
+
+            // Store Product_Id in Session
+            Session["SelectedProductId"] = e.CommandArgument.ToString();
+
+            // Redirect to Product_Details.aspx
+            if (Session["SelectedProductId"] != null)
+            {
+                db.InsertCart(Convert.ToInt32(Session["SelectedProductId"]), Convert.ToInt32(Session["User_Username"]), Convert.ToInt32(txtQuantity.Text));
+                Response.Redirect(ResolveUrl("~/Cart.aspx"));
+            }
+            else
+            {
+                Response.Redirect(ResolveUrl("~/Products.aspx"));
+            }
         }
     }
 }

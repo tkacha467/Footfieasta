@@ -149,5 +149,9 @@ namespace Footfiesta
                 rptCategories.DataBind();
             }
         }
+
+        protected void LinkButton1_Command(object sender, CommandEventArgs e)
+        {
+        }
     }
 }

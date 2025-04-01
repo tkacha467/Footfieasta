@@ -21,11 +21,11 @@ namespace Footfiesta
             con = new SqlConnection(s);
             con.Open();
 
-            // Ensure that the connection is closed before returning it
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
+            //// Ensure that the connection is closed before returning it
+            //if (con.State == ConnectionState.Open)
+            //{
+            //    con.Close();
+            //}
 
             return con;
         }
@@ -106,7 +106,57 @@ namespace Footfiesta
             return cmd.ExecuteNonQuery();
         }
 
+        public int InsertSize(decimal size)
+        {
+            connection();
+            cmd = new SqlCommand($"Insert into Size (SizeValue) Values ('{size}')", con);
+            return cmd.ExecuteNonQuery();
+        }
 
+        public DataSet SelectSize()
+        {
+            connection();
+            da = new SqlDataAdapter("Select Size_ID,SizeValue from Size", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+
+        }
+        public DataSet ShowSize()
+        {
+            connection();
+            da = new SqlDataAdapter("Select SizeValue from Size", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+
+        }
+        public int UpdateSize(int id, decimal size)
+        {
+            connection();
+            cmd = new SqlCommand($"Update Size set SizeValue='{size}' where Size_Id='{id}'", con);
+            return cmd.ExecuteNonQuery();
+        }
+
+        public int DeleteSize(int id)
+        {
+            connection();
+            cmd = new SqlCommand($"Delete From Size where Size_Id='{id}'", con);
+            return cmd.ExecuteNonQuery();
+
+        }
+    
+        public int InsertCart(int Pro_id,int User_id,int qty)
+        {
+            connection();
+            cmd = new SqlCommand($"Insert into Cart_tbl (Product_Id,User_Id,Quantity) values ('{Pro_id}','{User_id}','{qty}')", con);
+            return cmd.ExecuteNonQuery();
+        }
+
+        //public DataSet SelectCart()
+        //{
+        //    connection();
+        //}
 
     }
 }

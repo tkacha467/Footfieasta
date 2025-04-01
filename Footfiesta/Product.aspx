@@ -86,7 +86,7 @@
                     <!-- Buttons -->
                     <div class="button-container">
                         <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
-                            CommandName="cmd_viewpage" CssClass="btn btn-view">View Details</asp:LinkButton>
+                            CommandName="cmd_viewpage" OnCommand="LinkButton1_Command" CssClass="btn btn-view">View Details</asp:LinkButton>
 
                         <asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
                             CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>

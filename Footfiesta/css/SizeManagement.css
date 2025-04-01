@@ -1,0 +1,105 @@
+﻿/* Center the content container */
+.form-container {
+    width: 50%;
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #88c8bc; /* Teal color for the heading */
+    margin-bottom: 20px;
+}
+
+.form-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+    .form-table td {
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    .form-table label {
+        font-weight: bold;
+        color: #88c8bc; /* Teal color for labels */
+    }
+
+input.form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #88c8bc;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+
+    input.form-control:focus {
+        border-color: #4fa59d; /* Darker teal on focus */
+        box-shadow: 0 0 5px rgba(72, 191, 167, 0.5);
+    }
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 2px; /* Minimal rounding for a rectangular button */
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Primary button style */
+.btn-primary {
+    background-color: #88c8bc;
+}
+
+    .btn-primary:hover {
+        background-color: #4fa59d;
+        transform: scale(1.05); /* Slight zoom effect on hover */
+    }
+
+/* Secondary button style */
+.btn-secondary {
+    background-color: #ffffff;
+    color: #88c8bc;
+    border: 1px solid #88c8bc;
+}
+
+    .btn-secondary:hover {
+        background-color: #88c8bc;
+        color: white;
+        transform: scale(1.05); /* Slight zoom effect on hover */
+    }
+
+/* Size Item Styling */
+.size-item {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #88c8bc;
+    background-color: #f0fdfb;
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+    .size-item span {
+        color: #88c8bc;
+    }
+
+/* Error message styling */
+#lblMessage {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #e74c3c; /* Red color for error messages */
+}
