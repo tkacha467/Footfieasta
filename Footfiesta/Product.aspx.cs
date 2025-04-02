@@ -112,10 +112,12 @@ namespace Footfiesta
 
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            //ViewState["porid"] = e.CommandArgument; query string try
             if (e.CommandName == "cmd_viewpage")
             {
                 // Store Product_Id in Session
                 Session["SelectedProductId"] = e.CommandArgument.ToString();
+                //Response.Redirect(ResolveUrl("~/Product_Details.aspx?Product_Id=" + ViewState["proid"])); qurey string try
 
                 // Redirect to Product_Details.aspx
                 if (Session["SelectedProductId"] != null)

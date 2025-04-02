@@ -147,6 +147,7 @@
     <Content Include="Admin_panel\js\owl.carousel.min.js" />
     <Content Include="Admin_panel\js\popper.min.js" />
     <Content Include="Admin_panel\js\respond.min.js" />
+    <Content Include="Admin_panel\Message.aspx" />
     <Content Include="Admin_register.aspx" />
     <Content Include="App_Data\Footfiesta.mdf" />
     <Content Include="App_Data\Footfiesta_log.ldf">
@@ -346,6 +347,13 @@
     </Compile>
     <Compile Include="Admin_panel\Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_panel\Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_panel\Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin_register.aspx.cs">
       <DependentUpon>Admin_register.aspx</DependentUpon>

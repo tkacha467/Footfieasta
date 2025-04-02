@@ -15,6 +15,10 @@ namespace Footfiesta
         {
             db.connection();
             fill();
+            if (Session["Admin_Username"] == null) // Check if session is null
+            {
+                Response.Redirect(ResolveUrl("~/Login.aspx")); // Redirect to login page
+            }
         }
 
         void fill()

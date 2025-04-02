@@ -394,7 +394,8 @@
                                         { %>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Add_product.aspx") %>">Add Product</a></li>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Category.aspx") %>">Add Category</a></li>
-                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Size_Management.aspx.aspx") %>">Size Manage</a></li>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Size_Management.aspx") %>">Size Manage</a></li>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Message.aspx") %>">Message</a></li>
                                     <% } %>
                                   <%--  <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>--%>
                                     

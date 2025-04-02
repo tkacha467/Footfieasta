@@ -13,7 +13,7 @@ namespace Footfiesta
         {
             if (Session["User_Username"] == null) // Check if session is null
             {
-                Response.Redirect("Login.aspx"); // Redirect to login page
+                Response.Redirect(ResolveUrl("~/Login.aspx")); // Redirect to login page
             }
         }
     }

@@ -18,7 +18,8 @@ namespace Footfiesta
         {
             if (Session["User_Username"] == null) // Check if session is null
             {
-                Response.Redirect("Login.aspx"); // Redirect to login page
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Please login to add to cart!');", true);
+                Response.Redirect(ResolveUrl("~/Login.aspx")); // Redirect to login page
             }
             if (Session["SelectedProductId"] != null)
             {

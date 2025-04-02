@@ -170,5 +170,26 @@ namespace Footfiesta
             return ds;
         }
 
+        public int Insert_Contact(string fnm,string lnm,string email,string sub,string msg)
+        {
+            connection();
+            cmd = new SqlCommand($"Insert into Contact (First_Name,Last_Name,Email,Subject,Message) Values ('{fnm}','{lnm}','{email}','{sub}','{msg}')", con);
+            return cmd.ExecuteNonQuery();
+        }
+
+        public DataSet Select_Contact()
+        {
+            connection();
+            da = new SqlDataAdapter("Select * from Contact ", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+        public int Delete_Contact(int id)
+        {
+            connection();
+            cmd = new SqlCommand($"Delete from Contact Where Id='{id}'", con);
+            return cmd.ExecuteNonQuery();
+        }
     }
 }

@@ -23,6 +23,11 @@ namespace Footfiesta
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["User_Username"] == null) // Check if session is null
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Please login to add to cart!');", true);
+                Response.Redirect("Login.aspx"); // Redirect to login page
+            }
             if (!IsPostBack)
             {
                 // Check if Session contains a valid Product_Id
@@ -40,7 +45,7 @@ namespace Footfiesta
                 else
                 {
                     // Redirect to product listing page if no product is selected
-                    Response.Redirect("Products.aspx");
+                    Response.Redirect(ResolveUrl("~/Products.aspx"));
                 }
 
                 // Bind size data if needed

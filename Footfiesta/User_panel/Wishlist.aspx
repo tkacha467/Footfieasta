@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="index.html">Home</a></span> / <span>My Wishlist</span></p>
+                    <p class="bread"><span><a href="<%=ResolveUrl("~/Home.aspx") %>">Home</a></span> / <span>My Wishlist</span></p>
                 </div>
             </div>
         </div>
