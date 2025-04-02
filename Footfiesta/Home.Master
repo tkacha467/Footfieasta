@@ -372,19 +372,13 @@
                             <div class="col-sm-12 text-left menu-1">
                                 <ul>
                                     <li class="active"><a href="<%= ResolveUrl("~/Home.aspx") %>">Home</a></li>
-                                    <li><a href="<%= ResolveUrl("~/Product.aspx") %>">Product</a></li>
 
-                                    <% if (Session["Admin_Username"] != null)
-                                        { %>
-                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Add_product.aspx") %>">Add Product</a></li>
-                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Category.aspx") %>">Add Category</a></li>
-                                    <% } %>
-                                    <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>
-
-                                    <% if (Session["User_Username"] != null)
-                                        { %>
+                                     <% if (Session["Admin_Username"] == null)
+                                         { %>
                                     <li class="has-dropdown">
-                                        <a href="<%= ResolveUrl("~/User_panel/Men.aspx") %>">Men</a>
+                                         <a href="<%= ResolveUrl("~/Product.aspx") %>">Product</a>
+                                        <%} if (Session["User_Username"] != null)
+                                        { %>
                                         <ul class="dropdown">
                                             <li><a href="<%= ResolveUrl("~/User_panel/shopping_cart.aspx") %>">Shopping Cart</a></li>
                                             <li><a href="<%= ResolveUrl("~/User_panel/checkout.aspx") %>">Checkout</a></li>
@@ -392,23 +386,37 @@
                                             <li><a href="<%= ResolveUrl("~/User_panel/wishlist.aspx") %>">Wishlist</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="<%= ResolveUrl("~/User_panel/Men.aspx") %>">Men</a></li>
                                     <li><a href="<%= ResolveUrl("~/User_Panel/Women.aspx") %>">Women</a></li>
                                     <% } %>
+
+                                    <% if (Session["Admin_Username"] != null)
+                                        { %>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Add_product.aspx") %>">Add Product</a></li>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Category.aspx") %>">Add Category</a></li>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Size_Management.aspx.aspx") %>">Size Manage</a></li>
+                                    <% } %>
+                                  <%--  <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>--%>
+                                    
+                                     <% if (Session["Admin_Username"] == null)
+                                         { %>
 
                                     <li><a href="<%= ResolveUrl("~/About.aspx") %>">About</a></li>
                                     <li><a href="<%= ResolveUrl("~/Contact.aspx") %>">Contact</a></li>
 
-                                    <% if (Session["User_Username"] == null && Session["Admin_Username"] == null)
+                                    <% }
+                                        if (Session["User_Username"] == null && Session["Admin_Username"] == null)
                                         { %>
                                     <li><a href="<%= ResolveUrl("~/Login.aspx") %>">Login</a></li>
                                     <li><a href="<%= ResolveUrl("~/Register.aspx") %>">Register</a></li>
                                     <% }
                                         else
                                         { %>
-                                    <li><a href="<%= ResolveUrl("~/User_panel/Cart.aspx") %>"><i class="icon-shopping-cart"></i>Add To Cart</a></li>
-                                    <li>
-                                        <asp:LinkButton ID="linklogout" runat="server" CssClass="nav-link auto-style1" OnClick="LinkButton1_Click">Logout</asp:LinkButton>
+                                     <li>
+                                        <asp:LinkButton ID="linklogout" runat="server" OnClick="LinkButton1_Click">Logout</asp:LinkButton>
                                     </li>
+                                    <li class="cart"><a href="<%= ResolveUrl("~/User_panel/Cart.aspx") %>"><i class="icon-shopping-cart"></i>Add To Cart</a></li>
+                                   
                                     <% } %>
                                 </ul>
 

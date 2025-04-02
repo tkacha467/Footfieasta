@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="index.html">Home</a></span> / <span>Men</span></p>
+                    <p class="bread"><span><a href="<%=ResolveUrl("~/Home.aspx") %>">Home</a></span> / <span>Men</span></p>
                 </div>
             </div>
         </div>
@@ -22,43 +22,14 @@
                         <h2>Men's</h2>
                     </div>
                     <div class="menu text-center">
-                        <p><a href="#">New Arrivals</a> <a href="#">Best Sellers</a> <a href="#">Extended Widths</a> <a href="#">Sale</a></p>
+                        <p><%--<a href="#">New Arrivals</a> <a href="#">Best Sellers</a> <a href="#">Extended Widths</a> <a href="#">Sale</a>--%></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="colorlib-featured">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 text-center">
-                    <div class="featured">
-                        <div class="featured-img featured-img-2" style="background-image: url(images/men.jpg);">
-                            <h2>Casuals</h2>
-                            <p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <div class="featured">
-                        <div class="featured-img featured-img-2" style="background-image: url(images/women.jpg);">
-                            <h2>Dress</h2>
-                            <p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <div class="featured">
-                        <div class="featured-img featured-img-2" style="background-image: url(images/item-11.jpg);">
-                            <h2>Sports</h2>
-                            <p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="colorlib-product">
         <div class="container">
@@ -67,202 +38,47 @@
                     <h2>View All Products</h2>
                 </div>
             </div>
-            <div class="row row-pb-md">
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Minam Meaghan</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Men's Taja Commissioner</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Russ Men's Sneakers</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-5.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-6.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-7.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-8.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-9.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-10.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-11.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-12.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-13.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-14.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-15.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-16.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
+
+           <div class="product-container">
+ <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
+    <ItemTemplate>
+        <div class="product-card">
+            <!-- Product Image -->
+            <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Image_url") %>' CssClass="product-image" />
+
+            <!-- Product Name -->
+            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Product_Name") %>' CssClass="product-name"></asp:Label>
+
+            <!-- Product Price -->
+            <asp:Label ID="Label2" runat="server" Text='<%# Eval("Price", "{0:C}") %>' CssClass="product-price"></asp:Label>
+
+            <!-- Buttons -->
+            <div class="button-container">
+                <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
+                    CommandName="cmd_viewpage" CssClass="btn btn-view">View Details</asp:LinkButton>
+
+                <asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
+                    CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>
             </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="block-27">
-                        <ul>
-                            <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </ItemTemplate>
+</asp:Repeater>
+
+</div>
+
+<!-- Pagination Buttons -->
+<div style="text-align: center; margin-top: 20px;">
+    <asp:Button ID="ButtonPrevious" runat="server" Text="Previous" OnClick="ButtonPrevious_Click"
+        CssClass="pagination-btn" Enabled="false" />
+
+    <asp:Button ID="ButtonNext" runat="server" Text="Next" OnClick="ButtonNext_Click"
+        CssClass="pagination-btn" />
+</div>
+
+<!-- No Products Message -->
+<asp:Label ID="NoProductsLabel" runat="server" CssClass="no-products-message" Text="No products available."
+    Visible="false"></asp:Label>
+    
         </div>
     </div>
 

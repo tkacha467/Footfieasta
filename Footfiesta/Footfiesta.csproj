@@ -153,7 +153,7 @@
       <DependentUpon>Footfiesta.mdf</DependentUpon>
     </Content>
     <Content Include="css\SizeManagement.css" />
-    <Content Include="Size_Management.aspx" />
+    <Content Include="Admin_panel\Size_Management.aspx" />
     <Content Include="User_panel\Cart.aspx" />
     <Content Include="User_panel\Checkout.aspx" />
     <Content Include="Contact.aspx" />
@@ -354,11 +354,11 @@
     <Compile Include="Admin_register.aspx.designer.cs">
       <DependentUpon>Admin_register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Size_Management.aspx.cs">
+    <Compile Include="Admin_panel\Size_Management.aspx.cs">
       <DependentUpon>Size_Management.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Size_Management.aspx.designer.cs">
+    <Compile Include="Admin_panel\Size_Management.aspx.designer.cs">
       <DependentUpon>Size_Management.aspx</DependentUpon>
     </Compile>
     <Compile Include="User_panel\Cart.aspx.cs">
