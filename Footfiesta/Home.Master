@@ -396,6 +396,8 @@
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Category.aspx") %>">Add Category</a></li>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Size_Management.aspx") %>">Size Manage</a></li>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Message.aspx") %>">Message</a></li>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Admin_register.aspx") %>">Add Admin</a></li>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Show_cart.aspx") %>">Show Cart</a></li>
                                     <% } %>
                                   <%--  <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>--%>
                                     
@@ -416,9 +418,12 @@
                                      <li>
                                         <asp:LinkButton ID="linklogout" runat="server" OnClick="LinkButton1_Click">Logout</asp:LinkButton>
                                     </li>
+                                    <%if (Session["User_Username"] != null)
+                                        { %>
                                     <li class="cart"><a href="<%= ResolveUrl("~/User_panel/Cart.aspx") %>"><i class="icon-shopping-cart"></i>Add To Cart</a></li>
                                    
-                                    <% } %>
+                                    <% }
+                                        } %>
                                 </ul>
 
                             </div>
@@ -513,7 +518,7 @@
                                                         <span>New stylish shoes for men</span>
                                                     </p>
                                                     <p>
-                                                        <a href="Product.aspx" class="btn btn-primary">Shop Collection</a>
+                                                        <a href="<%=ResolveUrl("~/Product.aspx") %>" class="btn btn-primary">Shop Collection</a>
                                                     </p>
                                                 </div>
                                             </div>

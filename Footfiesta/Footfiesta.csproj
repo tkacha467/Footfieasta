@@ -148,7 +148,8 @@
     <Content Include="Admin_panel\js\popper.min.js" />
     <Content Include="Admin_panel\js\respond.min.js" />
     <Content Include="Admin_panel\Message.aspx" />
-    <Content Include="Admin_register.aspx" />
+    <Content Include="Admin_panel\Admin_register.aspx" />
+    <Content Include="Admin_panel\Show_cart.aspx" />
     <Content Include="App_Data\Footfiesta.mdf" />
     <Content Include="App_Data\Footfiesta_log.ldf">
       <DependentUpon>Footfiesta.mdf</DependentUpon>
@@ -355,12 +356,19 @@
     <Compile Include="Admin_panel\Message.aspx.designer.cs">
       <DependentUpon>Message.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin_register.aspx.cs">
+    <Compile Include="Admin_panel\Admin_register.aspx.cs">
       <DependentUpon>Admin_register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin_register.aspx.designer.cs">
+    <Compile Include="Admin_panel\Admin_register.aspx.designer.cs">
       <DependentUpon>Admin_register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_panel\Show_cart.aspx.cs">
+      <DependentUpon>Show_cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_panel\Show_cart.aspx.designer.cs">
+      <DependentUpon>Show_cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin_panel\Size_Management.aspx.cs">
       <DependentUpon>Size_Management.aspx</DependentUpon>

@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Footfiesta",
-    "\\Footfiesta\\App_Data"
+    "\\Footfiesta"
   ],
-  "SelectedNode": "\\Footfiesta\\Product_Details.aspx.cs",
+  "SelectedNode": "\\Footfiesta\\Admin_login.aspx.cs",
   "PreviewInSolutionExplorer": false
 }

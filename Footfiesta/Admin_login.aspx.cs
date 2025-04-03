@@ -23,7 +23,7 @@ namespace Footfiesta
         protected void btnAdminLogin_Click(object sender, EventArgs e)
         {
             db.connection();
-            cmd = new SqlCommand($"Select Count(*) from Admins where Username='{txtAdminUsername.Text}';", db.connection());
+            cmd = new SqlCommand($"Select Count(*) from Admins where Username='{txtAdminUsername.Text}' and Password='{txtAdminPassword.Text}';", db.connection());
             int i = Convert.ToInt32(cmd.ExecuteScalar());
 
             if(i>0)
