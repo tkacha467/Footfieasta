@@ -27,12 +27,27 @@ namespace Footfiesta
             if (IsPostBack)
             {
                 display();
+                show_profile();
             }
+
+        }
+        protected void lnkChangePassword_Click(object sender, EventArgs e)
+        {
+            // Try just redirecting for now
+            Response.Redirect("~/ChangePassword.aspx");
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
 
         }
+
+        protected void lnkLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Redirect(ResolveUrl("~/Home.aspx"));
+        }
+
         protected void rptPagination_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "Page")
@@ -96,6 +111,30 @@ namespace Footfiesta
             catch (Exception ex)
             {
                 Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+        }
+        void show_profile()
+        {
+            try
+            {
+                DataSet ds = db.SelectUser();
+
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    DataRow dr = ds.Tables[0].Rows[0];
+                    lblFullName.Text = dr["FullName"].ToString();
+                    lblUsername.Text = dr["Username"].ToString();
+                    lblEmail.Text = dr["Email"].ToString();
+                    lblAddress.Text = dr["Address"].ToString();
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("No user data found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error in show_profile(): " + ex.Message);
             }
         }
 

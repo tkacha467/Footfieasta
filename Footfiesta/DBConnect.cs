@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Web.UI.WebControls;
+using System.Web;
 
 namespace Footfiesta
 {
@@ -190,6 +191,17 @@ namespace Footfiesta
             connection();
             cmd = new SqlCommand($"Delete from Contact Where Id='{id}'", con);
             return cmd.ExecuteNonQuery();
+        }
+
+        public DataSet SelectUser()
+        {
+            connection();
+            string username = HttpContext.Current.Session["User_Username"]?.ToString();
+
+            da = new SqlDataAdapter($"Select FullName,Username,Email,Address from Users where Username='{username}'", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
         }
     }
 }

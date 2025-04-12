@@ -154,6 +154,7 @@
     <Content Include="App_Data\Footfiesta_log.ldf">
       <DependentUpon>Footfiesta.mdf</DependentUpon>
     </Content>
+    <Content Include="css\Profile.css" />
     <Content Include="css\SizeManagement.css" />
     <Content Include="Admin_panel\Size_Management.aspx" />
     <Content Include="User_panel\Cart.aspx" />

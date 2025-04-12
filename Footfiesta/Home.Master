@@ -8,9 +8,20 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
 
-     <%--size managment--%>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <%--Font Awesome (add in <head>) --%>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+
+    <%--Profile Icon (Font Awesome)--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <%--size managment--%>
     <link rel="stylesheet" href="css/SizeManagement.css" />
 
+    <%--profile--%>
+    <link href="css/Profile.css" rel="stylesheet" type="text/css" />
     <!-- Animate.css -->
     <link rel="stylesheet" href="css/animate.css">
     <!-- Icomoon Icon Fonts-->
@@ -61,6 +72,13 @@
    =======================================
 */--%>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <style>
         .nav-tabs {
             border-bottom: 3px solid #FF6F61;
             display: flex;
@@ -77,7 +95,7 @@
                     background: #fff;
                     border: 2px solid #FF6F61;
                     padding: 12px 25px;
-                    font-weight: 600;
+                    font-weight: 500;
                     text-transform: uppercase;
                     border-radius: 30px;
                     transition: all 0.3s ease-in-out;
@@ -330,55 +348,95 @@
                 <div class="top-menu">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-7 col-md-9">
-                                <div id="colorlib-logo"><a href="Home.aspx">FootFiesta</a></div>
-                            </div>
-                            <%--    <div class="col-sm-5 col-md-3">
-                                <div action="#" class="search-wrap">
-                                    <div style="display: flex; align-items: center; background-color: #fff; border-radius: 25px; overflow: hidden; border: 2px solid #ccc; width: 300px; padding: 5px;">
-
-                                        <asp:TextBox ID="TextBox1" runat="server" placeholder="Search"
-                                            Style="border: none; padding: 10px 15px; font-size: 16px; outline: none; width: 250px; border-radius: 30px; background: #fff;" BorderColor="White" />
-                                        <asp:Button ID="Button1" runat="server" Text="🔍"
-                                            Style="width: 50px; height: 50px; border-radius: 50%; background-color: #87c0b7; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;" />
-
-
-                                    </div>
-                                </div>
-                            </div>--%>
 
                             <%--for hide border code of search with css--%>
+                            <!-- Full-Width Container -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 20px;">
 
-                            <div class="col-sm-5 col-md-3">
-                                <div action="#" class="search-wrap">
-                                    <div style="display: flex; align-items: center; background-color: #fff; border-radius: 25px; overflow: hidden; border: 2px solid #ccc; width: 300px; padding: 5px;">
+                                <!-- Left Logo -->
+                                <div style="font-size: 33px; font-weight: bold; color: #555;">
+                                    <a href="Home.aspx">FootFiesta
+                                </div>
 
+                                <!-- Right: Search + Profile -->
+                                <div style="display: flex; align-items: center; gap: 20px;">
+
+                                    <!-- Search Box -->
+                                    <div style="display: flex; align-items: center; background-color: #fff; border-radius: 30px; overflow: hidden; border: 2px solid #ccc; height: 45px; width: 195px; padding: 3px;">
                                         <asp:TextBox ID="txtsearch" runat="server" placeholder="Search"
-                                            Style="border: none !important; outline: none !important; box-shadow: none !important; padding: 10px 15px; font-size: 16px; width: 250px; background: transparent; appearance: none; -webkit-appearance: none; -moz-appearance: none;" OnTextChanged="txtsearch_TextChanged" />
-
-
-                                        <asp:Button ID="Button1" runat="server" Text="🔍"
-                                            Style="width: 50px; height: 50px; border-radius: 50%; background-color: #87c0b7; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;" OnClick="Button1_Click1" />
-
+                                            Style="border: none !important; outline: none !important; box-shadow: none !important; padding: 10px 15px; font-size: 16px; width: 150px; background: transparent;" OnTextChanged="txtsearch_TextChanged" />
+                                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click"
+                                            Style="width: 35px; height: 35px; border-radius: 50%; background-color: #87c0b7; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: white; font-size: 16px; text-decoration: none;">
+    <i class="fas fa-search"></i>
+                                        </asp:LinkButton>
 
                                     </div>
+                                    <!-- Profile Icon + Dropdown -->
+                                    <div class="profile-icon" onclick="toggleProfileDropdown()">
+                                        <i class="fas fa-user"></i>
+                                        <div id="profileDropdown" class="dropdown-content">
+                                            <p>
+                                                👤 
+                                                    <strong>
+                                                        <asp:Label ID="lblFullName" runat="server" /></strong>
+                                            </p>
+                                            <p>
+                                                🆔 
+                                                <asp:Label ID="lblUsername" runat="server" />
+                                            </p>
+                                            <p>
+                                                📧 
+                                                <asp:Label ID="lblEmail" runat="server" />
+                                            </p>
+                                            <p>
+                                                📍 
+                                                <asp:Label ID="lblAddress" runat="server" />
+                                            </p>
+
+                                            <asp:LinkButton ID="lnkChangePassword" runat="server" OnClick="lnkChangePassword_Click" CssClass="change-btn">
+            🔐 Change Password
+                                            </asp:LinkButton>
+
+                                            <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" CssClass="logout-btn">
+            🚪 Logout
+                                            </asp:LinkButton>
+                                        </div>
+                                    </div>
+
+                                    <!-- Script -->
+                                    <script>
+                                        function toggleProfileDropdown() {
+                                            var dropdown = document.getElementById("profileDropdown");
+                                            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+                                        }
+
+                                        window.addEventListener("click", function (event) {
+                                            var profileIcon = document.querySelector('.profile-icon');
+                                            var dropdown = document.getElementById("profileDropdown");
+
+                                            if (!profileIcon.contains(event.target)) {
+                                                dropdown.style.display = "none";
+                                            }
+                                        });
+                                    </script>
+
+
+
                                 </div>
                             </div>
-
-
-
                         </div>
-                        <div class="row">
+                        <div class="row" style="padding: 0; margin: -15px 0 0 -22px;">
                             <div class="col-sm-12 text-left menu-1">
                                 <ul>
                                     <li class="active"><a href="<%= ResolveUrl("~/Home.aspx") %>">Home</a></li>
 
-                                     <% if (Session["Admin_Username"] == null)
-                                         { %>
-                                    <li class="has-dropdown">
-                                         <a href="<%= ResolveUrl("~/Product.aspx") %>">Product</a>
-                                        <%} if (Session["User_Username"] != null)
+                                    <% if (Session["Admin_Username"] == null)
                                         { %>
+                                    <li class="has-dropdown">
+                                        <a href="<%= ResolveUrl("~/Product.aspx") %>">Product</a>
+                                        <%}
+                                            if (Session["User_Username"] != null)
+                                            { %>
                                         <ul class="dropdown">
                                             <li><a href="<%= ResolveUrl("~/User_panel/shopping_cart.aspx") %>">Shopping Cart</a></li>
                                             <li><a href="<%= ResolveUrl("~/User_panel/checkout.aspx") %>">Checkout</a></li>
@@ -399,10 +457,10 @@
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Admin_register.aspx") %>">Add Admin</a></li>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Show_cart.aspx") %>">Show Cart</a></li>
                                     <% } %>
-                                  <%--  <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>--%>
-                                    
-                                     <% if (Session["Admin_Username"] == null)
-                                         { %>
+                                    <%--  <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>--%>
+
+                                    <% if (Session["Admin_Username"] == null)
+                                        { %>
 
                                     <li><a href="<%= ResolveUrl("~/About.aspx") %>">About</a></li>
                                     <li><a href="<%= ResolveUrl("~/Contact.aspx") %>">Contact</a></li>
@@ -415,13 +473,13 @@
                                     <% }
                                         else
                                         { %>
-                                     <li>
+                                    <li>
                                         <asp:LinkButton ID="linklogout" runat="server" OnClick="LinkButton1_Click">Logout</asp:LinkButton>
                                     </li>
                                     <%if (Session["User_Username"] != null)
                                         { %>
                                     <li class="cart"><a href="<%= ResolveUrl("~/User_panel/Cart.aspx") %>"><i class="icon-shopping-cart"></i>Add To Cart</a></li>
-                                   
+
                                     <% }
                                         } %>
                                 </ul>
