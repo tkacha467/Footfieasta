@@ -21,6 +21,8 @@ namespace Footfiesta
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             db.connection();
 
         }
@@ -29,16 +31,29 @@ namespace Footfiesta
         {
             conn();
             cmd = new SqlCommand($"Select Count(*) from Users where Username = '{txtUsername.Text}' and Password = '{txtPassword.Text}';",db.connection());
-            int i = Convert.ToInt32(cmd.ExecuteScalar());
-             
-            if(i>0)
+            //int i = Convert.ToInt32(cmd.ExecuteScalar());
+            object result = cmd.ExecuteScalar();
+            //if (i>0)
+            //{
+            //    Session["User_Username"] = txtUsername.Text;
+
+            //    Response.Write("User Login Sucessfully....!");
+            //    Response.Redirect("Home.aspx");
+            //}
+            if (result != null)
             {
+                int userId = Convert.ToInt32(result);
+                Session["UserId"] = userId; // ✅ Store user ID for future
                 Session["User_Username"] = txtUsername.Text;
-                Response.Write("User Login Sucessfully....!");
+
                 Response.Redirect("Home.aspx");
             }
-
-            
+            else
+            {
+                // Invalid login
+            }
         }
+
+
     }
-}
+    }

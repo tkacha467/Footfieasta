@@ -147,10 +147,10 @@ namespace Footfiesta
 
         }
     
-        public int InsertCart(int Pro_id,int User_id,int qty)
+        public int InsertCart(int Pro_id,int User_id,int qty,int sizeid)
         {
             connection();
-            cmd = new SqlCommand($"Insert into Cart_tbl (Product_Id,User_Id,Quantity) values ('{Pro_id}','{User_id}','{qty}')", con);
+            cmd = new SqlCommand($"Insert into Cart_tbl (Product_Id,User_Id,Size_id,Quantity) values ('{Pro_id}','{User_id}','{sizeid}','{qty}')", con);
             return cmd.ExecuteNonQuery();
         }
 
@@ -193,14 +193,27 @@ namespace Footfiesta
             return cmd.ExecuteNonQuery();
         }
 
-        public DataSet SelectUser()
+        //public DataSet User_profile(string username)
+        //{
+        //    connection();
+        //    cmd = new SqlCommand($"Select * form Users where Username='{username}'", con);
+        //    da = new SqlDataAdapter(cmd);
+        //    ds = new DataSet();
+        //    da.Fill(ds);
+        //    return ds;
+        //}
+
+        public DataSet GetUserDetails(string username)
         {
             connection();
-            string username = HttpContext.Current.Session["User_Username"]?.ToString();
+             cmd = new SqlCommand($"SELECT FullName, Email, Address FROM Users WHERE Username = '{username}'", con);
+             da = new SqlDataAdapter(cmd);
+             ds = new DataSet();
 
-            da = new SqlDataAdapter($"Select FullName,Username,Email,Address from Users where Username='{username}'", con);
-            ds = new DataSet();
+            con.Open();
             da.Fill(ds);
+            con.Close(); // Ensure connection is closed after execution
+
             return ds;
         }
     }

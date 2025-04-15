@@ -16,6 +16,11 @@ namespace Footfiesta
         DBConnect db = new DBConnect();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null)
+            {
+                Response.Redirect("~/User_login.aspx");
+                return;
+            }
             if (Session["User_Username"] == null) // Check if session is null
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Please login to add to cart!');", true);

@@ -26,11 +26,47 @@ namespace Footfiesta
         {
             if (IsPostBack)
             {
-                display();
-                show_profile();
+                if (Session["User_Username"] != null && !string.IsNullOrEmpty(Session["User_Username"].ToString()))
+                {
+                    // Safe access to Session variable
+                    string username = Session["User_Username"].ToString();
+
+                    da = new SqlDataAdapter($"Select * from Users where Username='{username}'", db.connection());
+                    ds = new DataSet();
+                    da.Fill(ds);
+
+                    if (ds.Tables[0].Rows.Count > 0) // Check if data exists
+                    {
+                        string s = ds.Tables[0].Rows[0][1].ToString();
+                        lblUsername.Text = s;
+                    }
+                    else
+                    {
+                        // Redirect to login if session is null or empty
+                         Response.Redirect(ResolveUrl("~/Login.aspx"));
+                    }
+                }
+         
+                display(); // Additional logic
             }
 
         }
+
+      
+
+        //public void showUser(string username)
+        //{
+        //    DataSet ds = db.User_profile(username);
+        //    if(ds.Tables[0].Rows.Count>0)
+        //    {
+        //        DataRow dr = ds.Tables[0].Rows[0];
+        //        lblFullName.Text = dr["FullName"].ToString();
+        //        lblEmail.Text = dr["Email"].ToString();
+        //        lblUsername.Text = dr["Username"].ToString();
+        //        lblAddress.Text = dr["Address"].ToString();
+        //    }
+
+        //}
         protected void lnkChangePassword_Click(object sender, EventArgs e)
         {
             // Try just redirecting for now
@@ -113,30 +149,8 @@ namespace Footfiesta
                 Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
         }
-        void show_profile()
-        {
-            try
-            {
-                DataSet ds = db.SelectUser();
+      
 
-                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                {
-                    DataRow dr = ds.Tables[0].Rows[0];
-                    lblFullName.Text = dr["FullName"].ToString();
-                    lblUsername.Text = dr["Username"].ToString();
-                    lblEmail.Text = dr["Email"].ToString();
-                    lblAddress.Text = dr["Address"].ToString();
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("No user data found.");
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error in show_profile(): " + ex.Message);
-            }
-        }
 
         protected void btnPrev_Click(object sender, EventArgs e)
         {
@@ -203,6 +217,7 @@ namespace Footfiesta
                 SearchProduct(txtsearch.Text.Trim()); // txtSearch is the search box
             }
         }
+
         private void SearchProduct(string searchQuery)
         {
             using (SqlConnection conn = db.connection())  // Ensure you are getting a valid connection

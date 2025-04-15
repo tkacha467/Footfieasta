@@ -1,189 +1,140 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Product_Details.aspx.cs" Inherits="Footfiesta.Product_Details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            font-weight: normal;
-        }
-
-        .auto-style2 {
-            display: block;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-clip: padding-box;
-            border-radius: .25rem;
-            transition: none;
-            border: 1px solid #ced4da;
-            background-color: #fff;
-        }
-        /* Additional Styling */
-        .product-container {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        .product-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .product-price {
-            font-size: 18px;
-            color: #28a745;
-            font-weight: bold;
+    <style>
+        #sizeOptions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .size-option {
-            padding: 10px 15px;
-            border: 1px solid #ccc;
-            background-color: #ddd;
-            cursor: pointer;
-            text-align: center;
             width: 50px;
+            height: 50px;
+            background-color: #d3d3d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
             font-size: 16px;
-            transition: 0.3s;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
         }
 
-            .size-option:hover {
-                background-color: #444;
-                color: white;
-            }
+        .size-option:hover {
+            background-color: #bcbcbc;
+            transform: scale(1.05);
+        }
+
+        .size-option.selected {
+            background-color: #333;
+            color: #fff;
+        }
 
         .quantity-btn {
-            background-color: #B0B0B0;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+            padding: 10px;
             cursor: pointer;
-            text-decoration: none;
+            font-size: 18px;
         }
 
-        .addtocart {
-            margin-top: 10px;
+        .auto-style2 {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="Home.aspx">Home</a></span> / <span>Product Details</span></p>
+                    <p class="bread"><span><a href="<%=ResolveUrl("~/Home.aspx") %>">Home</a></span> / <span>Product Details</span></p>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <asp:Label ID="lblDescription" runat="server" Text="Loading..."></asp:Label>
-
-    <asp:Repeater ID="RepeaterProductDetails" runat="server">
-        <ItemTemplate>
-            <div class="product-container">
-                <div>
-                    <a href="#">
-                        <img src='<%# Eval("Image_url") %>' alt="<%# Eval("Product_Name") %>" class="auto-style2">
-                    </a>
+    <div class="colorlib-product">
+        <div class="container">
+            <div class="row row-pb-lg product-detail-wrap">
+                <div class="col-sm-8">
+                    <div class="product-entry border text-center">
+                        <asp:Image ID="imgProduct" runat="server" CssClass="auto-style2" />
+                    </div>
                 </div>
+                <div class="col-sm-4">
+                    <div class="product-desc">
+                        <h3 class="product-title"><asp:Label ID="lblProductName" runat="server" /></h3>
+                        <p class="price"><span class="product-price"><asp:Label ID="lblPrice" runat="server" /></span></p>
+                        <p><asp:Label ID="lblDescription" runat="server" /></p>
 
-                <div>
-                    <h3 class="product-title"><%# Eval("Product_Name") %></h3>
-                    <p>
-                        <span class="product-price"><%# Eval("Price", "{0:C}") %></span>
-                        <span>
-                            <i></i><i></i><i></i><i></i><i></i>
-                            (74 Rating)
-                        </span>
-                    </p>
-                    <p><%# Eval("Description") %></p>
+                        <div class="size-wrap">
+                            <h4>Size</h4>
+                            <div id="sizeOptions">
+                                <asp:HiddenField ID="hdnSelectedSize" runat="server" />
 
-                    <h4>SIZE</h4>
-                    <div id="sizeOptions" style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <asp:Repeater ID="rptSizes" runat="server">
-                            <ItemTemplate>
-                                <div class="size-option" onclick="selectSize(this)" data-size='<%# Eval("SizeValue") %>'>
-                                    <%# Eval("SizeValue") %>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                                <asp:Repeater ID="rptSizes" runat="server">
+                                    <ItemTemplate>
+                                        <div class="size-option" onclick="selectSize(this)" data-size='<%# Eval("SizeValue") %>'>
+                                            <%# Eval("SizeValue") %>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </div>
+
+                        <h4>Quantity</h4>
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <asp:LinkButton ID="btnDecrease" runat="server" OnClientClick="changeQuantity(this, -1); return false;">-</asp:LinkButton>
+                            <asp:TextBox ID="txtQuantity" runat="server" Text="1" />
+                            <asp:LinkButton ID="btnIncrease" runat="server" OnClientClick="changeQuantity(this, 1); return false;">+</asp:LinkButton>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12 text-center">
+                                <asp:LinkButton ID="btnAddToCart" runat="server" CssClass="btn btn-primary btn-addtocart" OnClick="btnAddToCart_Click">
+                                    <i class="icon-shopping-cart"></i> Add to Cart
+                                </asp:LinkButton>
+                            </div>
+                        </div>
                     </div>
-
-                    <h4>QUANTITY</h4>
-                    <div style="display: flex; align-items: center; gap: 5px;">
-                        <asp:LinkButton ID="btnDecrease" runat="server" CssClass="quantity-btn" OnClientClick="changeQuantity(this, -1); return false;">-</asp:LinkButton>
-
-                        <asp:TextBox ID="txtQuantity" runat="server" Text="1" ReadOnly="true" CssClass="auto-style2" Style="text-align: center; width: 50px; height: 40px;"></asp:TextBox>
-
-                        <asp:LinkButton ID="btnIncrease" runat="server" CssClass="quantity-btn" OnClientClick="changeQuantity(this, 1); return false;">+</asp:LinkButton>
-
-                    </div>
-
-                    <div class="addtocart text-center">
-                        <asp:LinkButton ID="btnAddToCart" runat="server" CssClass="btn btn-primary btn-addtocart" OnClick="btnAddToCart_Click" CommandArgument='<%# Eval("Product_Name") %>' OnCommand="btnAddToCart_Command1">
-                            <i class="icon-shopping-cart"></i> Add to Cart
-                        </asp:LinkButton>
-                    </div>
-
-                    <asp:HiddenField ID="selectedSize" runat="server" />
                 </div>
             </div>
-        </ItemTemplate>
-    </asp:Repeater>
+        </div>
+    </div>
 
-    <script type="text/javascript">
+    <script>
         function selectSize(element) {
-            var sizeElements = element.closest(".product-container").querySelectorAll('.size-option');
-            sizeElements.forEach(el => {
-                el.style.backgroundColor = "#ddd";
-                el.style.color = "black";
-            });
-
-            element.style.backgroundColor = "#444";
-            element.style.color = "white";
-
-            var hiddenField = element.closest(".product-container").querySelector("input[type='hidden']");
-            if (hiddenField) {
-                hiddenField.value = element.getAttribute('data-size');
-            }
+            const allSizes = document.querySelectorAll('.size-option');
+            allSizes.forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            const selectedSize = element.getAttribute('data-size');
+            document.getElementById('<%= hdnSelectedSize.ClientID %>').value = selectedSize;
         }
 
 
-        function changeQuantity(button, amount) {
-            var container = button.closest(".product-container");
-            var quantityInput = container.querySelector("input[type='text']");
+        function changeQuantity(button, change) {
+            var textbox = button.parentElement.querySelector('input[type="text"]');
+            var currentQuantity = parseInt(textbox.value);
+            var newQuantity = currentQuantity + change;
+            if (newQuantity >= 1) {
+                textbox.value = newQuantity;
+            }
+        }
 
-            if (quantityInput) {
-                var currentValue = parseInt(quantityInput.value, 10);
-                if (currentValue + amount > 0) {
-                    quantityInput.value = currentValue + amount;
+        document.addEventListener('DOMContentLoaded', function () {
+            var textbox = document.querySelector('input[type="text"]');
+            textbox.addEventListener('input', function () {
+                var value = parseInt(this.value);
+                if (isNaN(value) || value < 1) {
+                    this.value = 1;
                 }
-            }
-        }
-
+            });
+        });
     </script>
-
-
-
-    <asp:Repeater ID="rptSizes" runat="server">
-        <ItemTemplate>
-            <div onclick="selectSize(this)" data-size='<%# Eval("SizeValue") %>'
-                style="padding: 10px 15px; border: 1px solid #ccc; background-color: #ddd; cursor: pointer; text-align: center; width: 50px; font-size: 16px; transition: 0.3s;">
-                <%# Eval("SizeValue") %>
-            </div>
-        </ItemTemplate>
-    </asp:Repeater>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

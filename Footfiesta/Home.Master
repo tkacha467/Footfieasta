@@ -202,23 +202,76 @@
         .btn-cart {
             background-color: #004d4d;
         }
-
-        /* Pagination Button Styling */
-        .pagination-btn {
-            padding: 10px 20px;
-            background-color: #008080;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            margin: 5px;
-            cursor: pointer;
-            display: inline-block;
+    </style>
+    <style>
+        .block-27 ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
+            .block-27 ul li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+                /* Common button styles */
+                .block-27 ul li .page-link,
+                .pagination-btn {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: white;
+                    color: #008080;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    border: 1px solid #ccc;
+                    text-decoration: none;
+                    transition: all 0.3s ease-in-out;
+                    display: inline-block;
+                }
+
+                /* Active page */
+                .block-27 ul li.active .page-link {
+                    background-color: #555;
+                    color: white;
+                    border-color: #555;
+                }
+
+                /* Hover effect */
+                .block-27 ul li .page-link:hover,
+                .pagination-btn:hover {
+                    background-color: #007bff;
+                    color: white;
+                    border-color: #007bff;
+                }
+
+        /* Arrows specifically */
+        .pagination-btn {
+            background-color: #008080;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 40px;
+        }
+
+            /* Disabled arrows */
             .pagination-btn:disabled {
                 background-color: #ccc;
                 cursor: not-allowed;
+            }
+
+            /* Icon styling (if using Ionicons or FontAwesome) */
+            .pagination-btn i {
+                font-size: 20px;
+                line-height: 40px;
             }
     </style>
 
@@ -361,16 +414,17 @@
                                 <!-- Right: Search + Profile -->
                                 <div style="display: flex; align-items: center; gap: 20px;">
 
-                                    <!-- Search Box -->
                                     <div style="display: flex; align-items: center; background-color: #fff; border-radius: 30px; overflow: hidden; border: 2px solid #ccc; height: 45px; width: 195px; padding: 3px;">
                                         <asp:TextBox ID="txtsearch" runat="server" placeholder="Search"
-                                            Style="border: none !important; outline: none !important; box-shadow: none !important; padding: 10px 15px; font-size: 16px; width: 150px; background: transparent;" OnTextChanged="txtsearch_TextChanged" />
+                                            AutoPostBack="false"
+                                            Style="border: none !important; outline: none !important; box-shadow: none !important; padding: 10px 15px; font-size: 16px; width: 150px; background: transparent;" />
+
                                         <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click"
                                             Style="width: 35px; height: 35px; border-radius: 50%; background-color: #87c0b7; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: white; font-size: 16px; text-decoration: none;">
-    <i class="fas fa-search"></i>
+        <i class="fas fa-search"></i>
                                         </asp:LinkButton>
-
                                     </div>
+
                                     <!-- Profile Icon + Dropdown -->
                                     <div class="profile-icon" onclick="toggleProfileDropdown()">
                                         <i class="fas fa-user"></i>
@@ -603,7 +657,7 @@
                                 <div class="featured">
                                     <a href="#" class="featured-img" style="background-image: url(images/men.jpg);"></a>
                                     <div class="desc">
-                                        <h2><a href="#">Shop Men's Collection</a></h2>
+                                        <h2><a href="<%=ResolveUrl("~/User_panel/Men.aspx") %>">Shop Men's Collection</a></h2>
                                     </div>
                                 </div>
                             </div>
@@ -611,7 +665,7 @@
                                 <div class="featured">
                                     <a href="#" class="featured-img" style="background-image: url(images/women.jpg);"></a>
                                     <div class="desc">
-                                        <h2><a href="#">Shop Women's Collection</a></h2>
+                                        <h2><a href="<%=ResolveUrl("~/User_panel/Women.aspx") %>">Shop Women's Collection</a></h2>
                                     </div>
                                 </div>
                             </div>
