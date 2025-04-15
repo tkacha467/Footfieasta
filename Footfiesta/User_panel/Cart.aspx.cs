@@ -16,86 +16,72 @@ namespace Footfiesta
         DBConnect db = new DBConnect();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] == null)
+            if (!IsPostBack)
             {
-                Response.Redirect("~/User_login.aspx");
-                return;
-            }
-            if (Session["User_Username"] == null) // Check if session is null
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Please login to add to cart!');", true);
-                Response.Redirect(ResolveUrl("~/Login.aspx")); // Redirect to login page
-            }
-            if (Session["SelectedProductId"] != null)
-            {
-                ViewState["PID"] = Session["SelectedProductId"].ToString();
-                //LoadProductDetails(productId); // Load and display product details
-            }
-            // Check if the productId is passed in the QueryString (for direct URL access or navigation)
-            else if (Request.QueryString["id"] != null)
-            {
-                string productId = Request.QueryString["id"];
-                //LoadProductDetails(productId); // Load and display product details
-            }
-            else
-            {
-                // Redirect to product listing page if no product is selected
-                Response.Redirect("Products.aspx");
-            }
+                try
+                {
+                    LoadCart();
+                }
+                catch (Exception ex)
+                {
+                    // Log the error or display a message for debugging
+                    Response.Write("Error Loading cart: " + ex.Message);
+                }
+                if (Session["UserId"] == null)
+                {
+                    Response.Write("You'r not loged in!");
+                }
 
-            fill();
+
+            }
         }
-        //private void LoadProductDetails(string productId)
-        //{
-        //    string query = "SELECT Product_Name, Price, Description, Image_url FROM Products WHERE Product_Id = @ProductId";
-
-        //    using (SqlConnection conn = db.connection())
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand(query, conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@ProductId", productId);
-
-        //            try
-        //            {
-        //                if (conn.State == ConnectionState.Closed)
-        //                {
-        //                    conn.Open();
-        //                }
-
-        //                // Create a DataAdapter and fill a DataTable
-        //                SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //                DataTable dt = new DataTable();
-        //                da.Fill(dt);
-
-        //                // Check if any data is returned
-        //                if (dt.Rows.Count > 0)
-        //                {
-        //                    // Bind the DataTable to the Repeater
-        //                    Repeater1.DataSource = dt;
-        //                    Repeater1.DataBind();
-        //                }
-        //                else
-        //                {
-        //                    // Handle the case where no data is found for the given productId
-        //                    Response.Redirect("~/Products.aspx"); // Or show an error message
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                // Handle the exception (log it or show an error message)
-        //                Response.Write("Error loading product details: " + ex.Message);
-        //            }
-        //        }
-        //    }
-        //}
-
-        void fill() {
-            Repeater1.DataSource = db.CartItmes(Convert.ToInt32(ViewState["PID"]));
-            Repeater1.DataBind();
-        }
+       
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            if (e.CommandName == "remove")
+            {
+                int productId = Convert.ToInt32(e.CommandArgument);
+                int userId = Convert.ToInt32(Session["UserId"]);
 
+                // Delete from cart based on product and user
+                db.ExecuteQuery($"DELETE FROM Cart_tbl WHERE Product_Id = '{productId}' AND User_Id = '{userId}'");
+
+                // Reload cart
+                LoadCart();
+            }
         }
+
+
+        private void LoadCart()
+        {
+            if (Session["UserId"] != null)
+            {
+                int userId = Convert.ToInt32(Session["UserId"]);
+                DataSet ds = db.CartItmes(userId);
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    // Add a label or log here to check if no data is returned
+                    Response.Write("No item Found");
+                }
+                else
+                {
+                    Repeater1.DataSource = ds;
+                    Repeater1.DataBind();
+                }
+
+                decimal subtotal = 0;
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    decimal price = Convert.ToDecimal(row["Price"]);
+                    int quantity = Convert.ToInt32(row["Quantity"]);
+                    subtotal += price * quantity;
+                }
+
+                lblSubtotal.Text = subtotal.ToString("C");
+                lblDelivery.Text = "$0.00";
+                lblTotal.Text = subtotal.ToString("C"); // Since delivery is 0
+            }
+        }
+
     }
 }

@@ -146,8 +146,8 @@ namespace Footfiesta
             return cmd.ExecuteNonQuery();
 
         }
-    
-        public int InsertCart(int Pro_id,int User_id,int qty,int sizeid)
+
+        public int InsertCart(int Pro_id, int User_id, int qty, int sizeid)
         {
             connection();
             cmd = new SqlCommand($"Insert into Cart_tbl (Product_Id,User_Id,Size_id,Quantity) values ('{Pro_id}','{User_id}','{sizeid}','{qty}')", con);
@@ -157,21 +157,45 @@ namespace Footfiesta
         public DataSet SelectProduct_id(string name)
         {
             connection();
-            da = new SqlDataAdapter($"select Product_Id from Products where Product_Name='{name}'",con);
+            da = new SqlDataAdapter($"select Product_Id from Products where Product_Name='{name}'", con);
             ds = new DataSet();
             da.Fill(ds);
             return ds;
         }
 
-        public DataSet CartItmes(int Product_id) {
+        public DataSet CartItmes(int User_id)
+        {
             connection();
-            da = new SqlDataAdapter($"SELECT P.Product_Name, P.Price, P.Image_url, C.Quantity From Products P INNER JOIN Cart_tbl C ON P.Product_Id = C.Product_Id where C.Product_Id ='{Product_id}'", con);
+            da = new SqlDataAdapter($@"
+        SELECT 
+            P.Product_Id,
+            P.Product_Name, 
+            P.Price, 
+            P.Image_url, 
+            C.Quantity, 
+            C.Size_id, 
+            S.SizeValue 
+        FROM Products P 
+        INNER JOIN Cart_tbl C ON P.Product_Id = C.Product_Id 
+        LEFT JOIN Size S ON C.Size_id = S.Size_Id 
+        WHERE C.User_Id = '{User_id}'", con);
+
             ds = new DataSet();
             da.Fill(ds);
             return ds;
         }
+        //for delete product in cart page
+        public void ExecuteQuery(string query)
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
 
-        public int Insert_Contact(string fnm,string lnm,string email,string sub,string msg)
+
+
+        public int Insert_Contact(string fnm, string lnm, string email, string sub, string msg)
         {
             connection();
             cmd = new SqlCommand($"Insert into Contact (First_Name,Last_Name,Email,Subject,Message) Values ('{fnm}','{lnm}','{email}','{sub}','{msg}')", con);
@@ -206,9 +230,9 @@ namespace Footfiesta
         public DataSet GetUserDetails(string username)
         {
             connection();
-             cmd = new SqlCommand($"SELECT FullName, Email, Address FROM Users WHERE Username = '{username}'", con);
-             da = new SqlDataAdapter(cmd);
-             ds = new DataSet();
+            cmd = new SqlCommand($"SELECT FullName, Email, Address FROM Users WHERE Username = '{username}'", con);
+            da = new SqlDataAdapter(cmd);
+            ds = new DataSet();
 
             con.Open();
             da.Fill(ds);
