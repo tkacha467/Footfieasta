@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="index.html">Home</a></span> / <span>Checkout</span></p>
+                    <p class="bread"><span><a href="Home.aspx">Home</a></span> / <span>Checkout</span></p>
                 </div>
             </div>
         </div>
@@ -34,179 +34,180 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <form method="post" class="colorlib-form">
-                        <h2>Billing Details</h2>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="country">Select Country</label>
-                                    <div class="form-field">
-                                        <i class="icon icon-arrow-down3"></i>
-                                        <select name="people" id="people" class="form-control">
-                                            <option value="#">Select country</option>
-                                            <option value="#">Alaska</option>
-                                            <option value="#">China</option>
-                                            <option value="#">Japan</option>
-                                            <option value="#">Korea</option>
-                                            <option value="#">Philippines</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="fname">First Name</label>
-                                    <input type="text" id="fname" class="form-control" placeholder="Your firstname">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="lname">Last Name</label>
-                                    <input type="text" id="lname" class="form-control" placeholder="Your lastname">
-                                </div>
-                            </div>
+          <div class="row">
+    <!-- Billing Details (Left Column) -->
+    <div class="col-lg-8">
+        <form method="post" class="colorlib-form">
+            <h2>Billing Details</h2>
 
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="companyname">Company Name</label>
-                                    <input type="text" id="companyname" class="form-control" placeholder="Company Name">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="fname">Address</label>
-                                    <input type="text" id="address" class="form-control" placeholder="Enter Your Address">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" id="address2" class="form-control" placeholder="Second Address">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="companyname">Town/City</label>
-                                    <input type="text" id="towncity" class="form-control" placeholder="Town or City">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="stateprovince">State/Province</label>
-                                    <input type="text" id="fname" class="form-control" placeholder="State Province">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="lname">Zip/Postal Code</label>
-                                    <input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email">E-mail Address</label>
-                                    <input type="text" id="email" class="form-control" placeholder="State Province">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="Phone">Phone Number</label>
-                                    <input type="text" id="zippostalcode" class="form-control" placeholder="">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optradio">
-                                            Create an Account? </label>
-                                        <label>
-                                            <input type="radio" name="optradio">
-                                            Ship to different address</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="cart-detail">
-                                <h2>Cart Total</h2>
-                                <ul>
-                                    <li>
-                                        <span>Subtotal</span> <span>$100.00</span>
-                                        <ul>
-                                            <li><span>1 x Product Name</span> <span>$99.00</span></li>
-                                            <li><span>1 x Product Name</span> <span>$78.00</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span>Shipping</span> <span>$0.00</span></li>
-                                    <li><span>Order Total</span> <span>$180.00</span></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="w-100"></div>
-
-                        <div class="col-md-12">
-                            <div class="cart-detail">
-                                <h2>Payment Method</h2>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optradio">
-                                                Direct Bank Tranfer</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optradio">
-                                                Check Payment</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optradio">
-                                                Paypal</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                I have read and accept the terms and conditions</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <p><a href="#" class="btn btn-primary">Place an order</a></p>
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label for="ddlCountry">Select Country</label>
+                <div class="form-field">
+                    <i class="icon icon-arrow-down3"></i>
+                    <asp:DropDownList ID="ddlCountry" CssClass="form-control" runat="server">
+                        <asp:ListItem Text="Select country" Value="" />
+                        <asp:ListItem>United States</asp:ListItem>
+                        <asp:ListItem>Canada</asp:ListItem>
+                        <asp:ListItem>United Kingdom</asp:ListItem>
+                        <asp:ListItem>Australia</asp:ListItem>
+                        <asp:ListItem>India</asp:ListItem>
+                        <asp:ListItem>Germany</asp:ListItem>
+                        <asp:ListItem>France</asp:ListItem>
+                        <asp:ListItem>Italy</asp:ListItem>
+                        <asp:ListItem>Spain</asp:ListItem>
+                        <asp:ListItem>Mexico</asp:ListItem>
+                        <asp:ListItem>Brazil</asp:ListItem>
+                        <asp:ListItem>China</asp:ListItem>
+                        <asp:ListItem>Japan</asp:ListItem>
+                        <asp:ListItem>South Korea</asp:ListItem>
+                        <asp:ListItem>Russia</asp:ListItem>
+                        <asp:ListItem>Netherlands</asp:ListItem>
+                        <asp:ListItem>Switzerland</asp:ListItem>
+                        <asp:ListItem>Sweden</asp:ListItem>
+                        <asp:ListItem>Norway</asp:ListItem>
+                        <asp:ListItem>Denmark</asp:ListItem>
+                        <asp:ListItem>Finland</asp:ListItem>
+                        <asp:ListItem>New Zealand</asp:ListItem>
+                        <asp:ListItem>Singapore</asp:ListItem>
+                        <asp:ListItem>Thailand</asp:ListItem>
+                        <asp:ListItem>Malaysia</asp:ListItem>
+                        <asp:ListItem>South Africa</asp:ListItem>
+                        <asp:ListItem>Argentina</asp:ListItem>
+                        <asp:ListItem>Philippines</asp:ListItem>
+                        <asp:ListItem>Turkey</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
+
+            <table class="table table-borderless">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="txtFirstName">First Name</label>
+                            <asp:TextBox ID="txtFirstName" CssClass="form-control" Placeholder="Your firstname" runat="server" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="txtLastName">Last Name</label>
+                            <asp:TextBox ID="txtLastName" CssClass="form-control" Placeholder="Your lastname" runat="server" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="form-group">
+                            <label for="txtCompanyName">Company Name</label>
+                            <asp:TextBox ID="txtCompanyName" CssClass="form-control" Placeholder="Company Name" runat="server" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="form-group">
+                            <label for="txtAddress1">Address</label>
+                            <asp:TextBox ID="txtAddress1" CssClass="form-control" Placeholder="Enter Your Address" runat="server" />
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtAddress2" CssClass="form-control" Placeholder="Second Address" runat="server" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="form-group">
+                            <label for="txtCity">Town/City</label>
+                            <asp:TextBox ID="txtCity" CssClass="form-control" Placeholder="Town or City" runat="server" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="txtState">State/Province</label>
+                            <asp:TextBox ID="txtState" CssClass="form-control" Placeholder="State Province" runat="server" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="txtZip">Zip/Postal Code</label>
+                            <asp:TextBox ID="txtZip" CssClass="form-control" Placeholder="Zip / Postal" runat="server" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="txtEmail">E-mail Address</label>
+                            <asp:TextBox ID="txtEmail" CssClass="form-control" Placeholder="Email Address" runat="server" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="txtPhone">Phone Number</label>
+                            <asp:TextBox ID="txtPhone" CssClass="form-control" Placeholder="Phone Number" runat="server" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <asp:RadioButton ID="rbCreateAccount" GroupName="Options" runat="server" />
+                                    Create an Account?
+                                </label>
+                                <label>
+                                    <asp:RadioButton ID="rbDifferentAddress" GroupName="Options" runat="server" Checked="true" />
+                                    Ship to different address
+                                </label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <!-- Cart + Payment (Right Column) -->
+  <div class="col-lg-4">
+    <div class="cart-detail">
+        <h2>Cart Total</h2>
+        <ul>
+            <li>
+                <span>Subtotal</span> <span id="subTotal" runat="server"></span>
+                <ul id="productList" runat="server">
+                    <%-- Dynamic product list will be rendered here from code-behind --%>
+                </ul>
+            </li>
+            <li><span>Shipping</span> <span>$0.00</span></li>
+            <li><span>Order Total</span> <span id="orderTotal" runat="server"></span></li>
+        </ul>
+    </div>
+
+    <div class="cart-detail">
+        <h2>Payment Method</h2>
+        <div class="form-group">
+            <label><input type="radio" name="optradio"> Direct Bank Transfer</label>
+        </div>
+        <div class="form-group">
+            <label><input type="radio" name="optradio"> Check Payment</label>
+        </div>
+        <div class="form-group">
+            <label><input type="radio" name="optradio"> Paypal</label>
+        </div>
+        <div class="form-group">
+            <label><input type="checkbox"> I have read and accept the terms and conditions</label>
         </div>
     </div>
+
+    <div class="text-center">
+        <asp:Button ID="btnPlaceOrder" runat="server" CssClass="btn btn-primary" Text="Place an order" OnClick="btnPlaceOrder_Click" />
+    </div>
+</div>
+
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

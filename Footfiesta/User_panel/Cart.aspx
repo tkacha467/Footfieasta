@@ -112,10 +112,17 @@
                 </div>
             </div>
         </div>
+        <div class="text-center mt-4">
+    <asp:LinkButton ID="btnOrderNow" runat="server" CssClass="btn btn-primary" OnClick="btnOrderNow_Click"
+        Style="background-color: #88c8bc; border-color: #88c8bc; color: white; padding: 10px 25px; font-size: 16px;">
+      Checkout
+    </asp:LinkButton>
+</div>
+
 
     </div>
 </div>
-
+    
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

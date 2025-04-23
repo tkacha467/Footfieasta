@@ -1,23 +1,49 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Footfiesta.Product" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .custom-nav-btn {
+            background-color: #008080; /* Teal-like button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            font-family: 'Segoe UI', sans-serif;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+            .custom-nav-btn:hover {
+                background-color: #006666;
+                transform: scale(1.03);
+            }
+
+            .custom-nav-btn:disabled {
+                background-color: #e0e0e0;
+                color: #aaa;
+                border: none;
+                cursor: not-allowed;
+            }
+    </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-   
+
     <ul class="nav nav-tabs" id="productTabs" style="display: flex; align-items: center; justify-content: center; gap: 15px; padding: 10px 0; border-bottom: none;">
-    <asp:Repeater ID="rptCategories" runat="server">
-        <ItemTemplate>
-            <li class="nav-item" style="list-style: none;">
-                <asp:LinkButton ID="btnCategory" runat="server" CommandArgument='<%# Eval("Category_Id") %>'
-                    OnClick="CategoryTab_Click"
-                    CssClass='<%# Container.ItemIndex == 0 ? "nav-link active" : "nav-link" %>'
-                    Style="display: flex; align-items: center; justify-content: center; width: 160px; height: 50px; text-align: center; color: #87c0b7; background: white; border: 2px solid #87c0b7; border-radius: 25px; font-weight: bold; text-transform: uppercase; box-shadow: 2px 4px 8px rgba(0,0,0,0.15); transition: all 0.3s ease-in-out;">
+        <asp:Repeater ID="rptCategories" runat="server">
+            <ItemTemplate>
+                <li class="nav-item" style="list-style: none;">
+                    <asp:LinkButton ID="btnCategory" runat="server" CommandArgument='<%# Eval("Category_Id") %>'
+                        OnClick="CategoryTab_Click"
+                        CssClass='<%# Container.ItemIndex == 0 ? "nav-link active" : "nav-link" %>'
+                        Style="display: flex; align-items: center; justify-content: center; width: 160px; height: 50px; text-align: center; color: #87c0b7; background: white; border: 2px solid #87c0b7; border-radius: 25px; font-weight: bold; text-transform: uppercase; box-shadow: 2px 4px 8px rgba(0,0,0,0.15); transition: all 0.3s ease-in-out;">
                     <%# Eval("Category_name") %>
-                </asp:LinkButton>
-            </li>
-        </ItemTemplate>
-    </asp:Repeater>
-</ul>
+                    </asp:LinkButton>
+                </li>
+            </ItemTemplate>
+        </asp:Repeater>
+    </ul>
 
 
 
@@ -58,8 +84,8 @@
                         <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
                             CommandName="cmd_viewpage" OnCommand="LinkButton1_Command" CssClass="btn btn-view">View Details</asp:LinkButton>
 
-                        <asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
-                            CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>
+                        <%--<asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
+                            CommandName="cmd_adtc" Oncommand="LinkAdd_to_cart_Command" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>--%>
                     </div>
                 </div>
             </ItemTemplate>
@@ -69,12 +95,13 @@
 
     <div style="text-align: center; margin-top: 20px;">
         <asp:Button ID="ButtonPrevious" runat="server" Text="Previous" OnClick="ButtonPrevious_Click"
-            CssClass="pagination-btn" Enabled="false" />
+            CssClass="custom-nav-btn" Enabled="false" />
 
         <asp:Button ID="ButtonNext" runat="server" Text="Next" OnClick="ButtonNext_Click"
-            CssClass="pagination-btn" />
-
+            CssClass="custom-nav-btn" />
     </div>
+
+
 </asp:Content>
 
 <asp:Content ID="Content4" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">

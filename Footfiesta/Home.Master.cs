@@ -185,7 +185,10 @@ namespace Footfiesta
             display();
         }
 
-
+        protected void Repeater2_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+           
+        }
 
 
 
@@ -262,6 +265,25 @@ namespace Footfiesta
 
         }
 
+        protected void Repeater2_ItemCommand1(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "cmd_viewpage")
+            {
+                // Store Product_Id in Session
+                Session["SelectedProductId"] = e.CommandArgument.ToString();
+
+                // Redirect to Product_Details.aspx
+                if (Session["SelectedProductId"] != null)
+                {
+                    Response.Redirect(ResolveUrl("~/Product_Details.aspx"));
+                }
+                else
+                {
+                    Response.Redirect(ResolveUrl("~/Products.aspx"));
+                }
+            }
+        }
+
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Redirect(ResolveUrl("~/Product.aspx"));
@@ -269,10 +291,7 @@ namespace Footfiesta
 
 
 
-        protected void Repeater2_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-
-        }
+       
     }
 
 }

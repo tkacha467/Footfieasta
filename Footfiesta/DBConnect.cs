@@ -132,6 +132,7 @@ namespace Footfiesta
             return ds;
 
         }
+       
         public int UpdateSize(int id, decimal size)
         {
             connection();
@@ -239,6 +240,96 @@ namespace Footfiesta
             con.Close(); // Ensure connection is closed after execution
 
             return ds;
+        }
+
+        //for oder system
+        public int InsertOrder(int userId, decimal totalAmount)
+        {
+             connection();
+            string status = "Pending"; // set default status manually
+            cmd = new SqlCommand($"INSERT INTO Order_tbl (User_Id, TotalAmount,Status) OUTPUT INSERTED.Order_Id VALUES ('{userId}', '{totalAmount}','{status}')", con);
+          
+            int Order_Id = (int)cmd.ExecuteScalar();
+            con.Close();
+            return Order_Id;
+        }
+
+        public void InsertOrderItems(int orderId, DataSet cartItems)
+        {
+            foreach (DataRow row in cartItems.Tables[0].Rows)
+            {
+                int productId = Convert.ToInt32(row["Product_Id"]);
+                int sizeId = Convert.ToInt32(row["Size_Id"]);
+                int quantity = Convert.ToInt32(row["Quantity"]);
+                decimal price = Convert.ToDecimal(row["Price"]);
+
+                string query = $"INSERT INTO OrderItems_tbl (OrderId, Product_Id, Size_Id, Quantity, Price) " +
+                               $"VALUES ('{orderId}', '{productId}', '{sizeId}', '{quantity}', '{price}')";
+
+                cmd = new SqlCommand(query, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        public void ClearCart(int userId)
+        {
+            connection();
+            string query = $"DELETE FROM Cart_tbl WHERE User_Id = '{userId}'";
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void InsertBillingDetails(int orderId, string country, string firstName, string lastName, string company, string address1, string address2, string city, string state, string zip, string email, string phone)
+        {
+            connection();
+            cmd = new SqlCommand($"INSERT INTO BillingDetails_tbl (OrderId, Country, FirstName, LastName, CompanyName, Address1, Address2, City, State, ZipCode, Email, Phone) " +
+                                 $"VALUES ('{orderId}', '{country}', '{firstName}', '{lastName}', '{company}', '{address1}', '{address2}', '{city}', '{state}', '{zip}', '{email}', '{phone}')", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+
+        public DataSet Manage_order()
+        {
+            connection();
+            da = new SqlDataAdapter(@"
+        SELECT 
+            bd.BillingId, 
+            bd.OrderId, 
+            bd.FirstName, 
+            bd.LastName, 
+            bd.CompanyName,
+            bd.Address1, 
+            bd.Address2, 
+            bd.City,
+            o.Order_Date, 
+            o.TotalAmount, 
+            o.Status,
+            p.Product_Name AS ProductName,  -- Here we alias it to match your GridView
+            oi.Quantity, 
+            oi.Price
+        FROM BillingDetails_tbl bd 
+        JOIN Order_tbl o ON bd.OrderId = o.Order_Id 
+        JOIN OrderItems_tbl oi ON o.Order_Id = oi.OrderId 
+        JOIN Products p ON oi.Product_Id = p.Product_Id
+        ORDER BY o.Order_Date DESC
+    ", con);
+
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+
+
+        public void ChangeStatus(string orderId, string newStatus)
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand($"UPDATE Order_tbl SET Status = '{newStatus}' WHERE Order_Id = {orderId}", con);
+            cmd.ExecuteNonQuery();
         }
     }
 }

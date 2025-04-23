@@ -1,6 +1,32 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Women.aspx.cs" Inherits="Footfiesta.Women" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .custom-nav-btn {
+            background-color: #008080; /* Teal-like button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            font-family: 'Segoe UI', sans-serif;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+            .custom-nav-btn:hover {
+                background-color: #006666;
+                transform: scale(1.03);
+            }
+
+            .custom-nav-btn:disabled {
+                background-color: #e0e0e0;
+                color: #aaa;
+                border: none;
+                cursor: not-allowed;
+            }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="breadcrumbs">
@@ -28,7 +54,7 @@
         </div>
     </div>
 
- 
+
     <div class="colorlib-product">
         <div class="container">
             <div class="row">
@@ -56,8 +82,8 @@
                                 <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
                                     CommandName="cmd_viewpage" CssClass="btn btn-view">View Details</asp:LinkButton>
 
-                                <asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
-                                    CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>
+                                <%--<asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>'
+                                    CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>--%>
                             </div>
                         </div>
                     </ItemTemplate>
@@ -68,11 +94,12 @@
             <!-- Pagination Buttons -->
             <div style="text-align: center; margin-top: 20px;">
                 <asp:Button ID="ButtonPrevious" runat="server" Text="Previous" OnClick="ButtonPrevious_Click"
-                    CssClass="pagination-btn" Enabled="false" />
+                    CssClass="custom-nav-btn" Enabled="false" />
 
                 <asp:Button ID="ButtonNext" runat="server" Text="Next" OnClick="ButtonNext_Click"
-                    CssClass="pagination-btn" />
+                    CssClass="custom-nav-btn" />
             </div>
+
 
             <!-- No Products Message -->
             <asp:Label ID="NoProductsLabel" runat="server" CssClass="no-products-message" Text="No products available."

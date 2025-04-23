@@ -127,6 +127,7 @@ namespace Footfiesta
                     Response.Redirect(ResolveUrl("~/Products.aspx"));
                 }
             }
+            
         }
 
         void AddToCart(string productId)
@@ -152,6 +153,11 @@ namespace Footfiesta
 
         protected void LinkButton1_Command(object sender, CommandEventArgs e)
         {
+        }
+
+        protected void LinkAdd_to_cart_Command(object sender, CommandEventArgs e)
+        {
+           
         }
     }
 }

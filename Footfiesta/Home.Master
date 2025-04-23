@@ -424,7 +424,7 @@
         <i class="fas fa-search"></i>
                                         </asp:LinkButton>
                                     </div>
-
+                            
                                     <!-- Profile Icon + Dropdown -->
                                     <div class="profile-icon" onclick="toggleProfileDropdown()">
                                         <i class="fas fa-user"></i>
@@ -474,8 +474,6 @@
                                         });
                                     </script>
 
-
-
                                 </div>
                             </div>
                         </div>
@@ -509,7 +507,7 @@
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Size_Management.aspx") %>">Size Manage</a></li>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Message.aspx") %>">Message</a></li>
                                     <li><a href="<%= ResolveUrl("~/Admin_panel/Admin_register.aspx") %>">Add Admin</a></li>
-                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Show_cart.aspx") %>">Show Cart</a></li>
+                                    <li><a href="<%= ResolveUrl("~/Admin_panel/Manage_Orders.aspx") %>">Manage Ordere</a></li>
                                     <% } %>
                                     <%--  <li><a href="<%= ResolveUrl("~/product_details.aspx") %>">Product Detail</a></li>--%>
 
@@ -680,13 +678,11 @@
                             </div>
                         </div>
                         <asp:ScriptManager runat="server" />
-
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-
                                 <%-- Repeater for displaying products --%>
                                 <div class="product-container">
-                                    <asp:Repeater ID="Repeater2" runat="server">
+                                    <asp:Repeater ID="Repeater2" runat="server" OnItemCommand="Repeater2_ItemCommand1">
                                         <ItemTemplate>
                                             <div class="product-card">
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Image_url") %>' CssClass="product-image" />
@@ -694,13 +690,12 @@
                                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("Price", "{0:C}") %>' CssClass="product-price"></asp:Label>
                                                 <div class="button-container">
                                                     <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_viewpage" CssClass="btn btn-view">View Details</asp:LinkButton>
-                                                    <asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>
+                                                    <%--<asp:LinkButton ID="LinkAdd_to_cart" runat="server" CommandArgument='<%# Eval("Product_Id") %>' CommandName="cmd_adtc" CssClass="btn btn-cart">Add To Cart</asp:LinkButton>--%>
                                                 </div>
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </div>
-
                                 <%-- Pagination --%>
                                 <div class="row">
                                     <div class="col-md-12 text-center">
@@ -712,7 +707,6 @@
                                 <i class="ion-ios-arrow-back"></i>
                                                     </asp:LinkButton>
                                                 </li>
-
                                                 <%-- Dynamic Page Numbers --%>
                                                 <asp:Repeater ID="rptPagination" runat="server" OnItemCommand="rptPagination_ItemCommand">
                                                     <ItemTemplate>
@@ -721,7 +715,6 @@
                                                         </li>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
-
                                                 <%-- Next Page Button --%>
                                                 <li>
                                                     <asp:LinkButton ID="btnNext" runat="server" CssClass="pagination-btn" OnClick="btnNext_Click">
@@ -732,11 +725,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </ContentTemplate>
                         </asp:UpdatePanel>
-
-
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <p>
@@ -751,7 +741,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                                <h2>Trusted Partnersners</h2>
+                                <h2>Trusted Partnersnersted Partnersners</h2>
                             </div>
                         </div>
                         <div class="row">
